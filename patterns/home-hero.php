@@ -32,7 +32,7 @@
 				<!-- /wp:button -->
 
 				<!-- wp:button {"className":"is-style-outline","textColor":"white"} -->
-				<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-white-color has-text-color wp-element-button" href="/about"><?php echo esc_html_x( 'Why Fieldnote exists', 'Hero secondary action', 'fieldnote' ); ?></a></div>
+				<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-white-color has-text-color wp-element-button" href="<?php echo esc_url( home_url( '/about/' ) ); ?>"><?php echo esc_html_x( 'Why Fieldnote exists', 'Hero secondary action', 'fieldnote' ); ?></a></div>
 				<!-- /wp:button -->
 			</div>
 			<!-- /wp:buttons -->

@@ -31,7 +31,7 @@
 			<p class="has-graphite-color has-text-color has-lead-font-size"><?php echo esc_html_x( 'Fieldnote is designed for work that needs context, room, and a clear point of view—not another race through the feed.', 'Callout supporting text', 'fieldnote' ); ?></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"className":"fieldnote-arrow-link","style":{"typography":{"fontWeight":"700"}}} -->
-			<p class="fieldnote-arrow-link" style="font-weight:700"><a href="/about"><?php echo esc_html_x( 'Read our editorial principles →', 'Callout action', 'fieldnote' ); ?></a></p>
+			<p class="fieldnote-arrow-link" style="font-weight:700"><a href="<?php echo esc_url( home_url( '/about/' ) ); ?>"><?php echo esc_html_x( 'Read our editorial principles →', 'Callout action', 'fieldnote' ); ?></a></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->

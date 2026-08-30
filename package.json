@@ -1,14 +1,19 @@
 {
 	"name": "fieldnote-block-theme",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"private": true,
 	"description": "Development and validation tooling for the Fieldnote WordPress block theme.",
 	"scripts": {
 		"env:start": "wp-env start --runtime=playground",
+		"env:start:docker": "wp-env start",
 		"env:stop": "wp-env stop",
+		"lint": "npm run lint:js && npm run lint:css",
+		"lint:css": "stylelint \"style.css\" \"assets/css/**/*.css\" \"plugins/fieldnote-editorial-blocks/blocks/**/*.css\"",
+		"lint:js": "eslint \"plugins/fieldnote-editorial-blocks/blocks/**/*.js\" \"tests/**/*.js\" \"scripts/**/*.mjs\" \"playwright.config.js\"",
 		"package": "npm run package:theme && npm run package:plugin",
 		"package:plugin": "bash scripts/package-plugin.sh",
 		"package:theme": "bash scripts/package-theme.sh",
+		"package:verify": "bash scripts/verify-packages.sh",
 		"test": "npm run test:theme && npm run test:plugin",
 		"test:e2e": "WP_BASE_URL=http://localhost:8888 playwright test",
 		"test:e2e:ui": "WP_BASE_URL=http://localhost:8888 playwright test --ui",
@@ -19,10 +24,19 @@
 	"devDependencies": {
 		"@axe-core/playwright": "4.13.0",
 		"@playwright/test": "1.62.1",
-		"@wordpress/e2e-test-utils-playwright": "1.46.0",
-		"@wordpress/env": "11.14.0"
+		"@wordpress/e2e-test-utils-playwright": "1.54.0",
+		"@wordpress/eslint-plugin": "25.10.0",
+		"@wordpress/env": "11.14.0",
+		"@wordpress/stylelint-config": "24.3.0",
+		"eslint": "10.9.1",
+		"stylelint": "16.26.1",
+		"stylelint-scss": "6.14.0"
 	},
 	"engines": {
-		"node": ">=20"
-	}
+		"node": ">=22.19"
+	},
+	"overrides": {
+		"lighthouse": "13.4.1"
+	},
+	"packageManager": "npm@11.9.0"
 }

@@ -8,6 +8,18 @@
 	padding: clamp(1.25rem, 3vw, 2.5rem) 0;
 }
 
+.fieldnote-lead-story__media {
+	background: #e5eae5;
+	color: inherit;
+	display: block;
+	min-height: 22rem;
+	overflow: hidden;
+}
+
+.fieldnote-lead-story__content {
+	align-self: center;
+}
+
 .fieldnote-lead-story.is-image-right .fieldnote-lead-story__media {
 	grid-column: 2;
 }
@@ -23,14 +35,6 @@
 
 .fieldnote-lead-story.is-layout-stacked .fieldnote-lead-story__content {
 	padding-top: clamp(1.5rem, 3vw, 2.5rem);
-}
-
-.fieldnote-lead-story__media {
-	background: #e5eae5;
-	color: inherit;
-	display: block;
-	min-height: 22rem;
-	overflow: hidden;
 }
 
 .fieldnote-lead-story__image,
@@ -49,7 +53,7 @@
 	box-sizing: border-box;
 	color: #fff;
 	display: flex;
-	font-family: Iowan Old Style, Baskerville, "Times New Roman", Times, serif;
+	font-family: "Iowan Old Style", Baskerville, "Times New Roman", Times, serif;
 	font-size: clamp(4rem, 12vw, 8rem);
 	font-weight: 600;
 	justify-content: flex-end;
@@ -59,14 +63,11 @@
 }
 
 @media (hover: hover) {
+
 	.fieldnote-lead-story__media:hover .fieldnote-lead-story__image,
 	.fieldnote-lead-story__media:hover .fieldnote-lead-story__placeholder {
 		transform: scale(1.02);
 	}
-}
-
-.fieldnote-lead-story__content {
-	align-self: center;
 }
 
 .fieldnote-lead-story__eyebrow,
@@ -91,7 +92,7 @@
 }
 
 .fieldnote-lead-story__title {
-	font-family: Iowan Old Style, Baskerville, "Times New Roman", Times, serif;
+	font-family: "Iowan Old Style", Baskerville, "Times New Roman", Times, serif;
 	font-size: clamp(2.2rem, 5vw, 4.75rem);
 	font-weight: 600;
 	letter-spacing: -0.04em;
@@ -133,6 +134,7 @@
 }
 
 @media (max-width: 64rem) {
+
 	.wp-block-fieldnote-lead-story.fieldnote-lead-story {
 		gap: 2rem;
 		grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.85fr);
@@ -140,9 +142,14 @@
 }
 
 @media (max-width: 37.5rem) {
+
 	.wp-block-fieldnote-lead-story.fieldnote-lead-story {
 		display: flex;
 		flex-direction: column;
+	}
+
+	.fieldnote-lead-story__media {
+		min-height: 16rem;
 	}
 
 	.fieldnote-lead-story.is-image-right .fieldnote-lead-story__media {
@@ -153,12 +160,10 @@
 		order: 1;
 	}
 
-	.fieldnote-lead-story__media {
-		min-height: 16rem;
-	}
 }
 
 @media (prefers-reduced-motion: reduce) {
+
 	.fieldnote-lead-story__image,
 	.fieldnote-lead-story__placeholder {
 		transition: none;
@@ -166,6 +171,7 @@
 }
 
 @media print {
+
 	.wp-block-fieldnote-lead-story.fieldnote-lead-story {
 		break-inside: avoid;
 	}

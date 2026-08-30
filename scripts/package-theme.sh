@@ -42,10 +42,13 @@ for directory in "${directories[@]}"; do
 	cp -R "${project_root}/${directory}/." "${staging_theme}/${directory}/"
 done
 
+find "${staging_theme}" -type d -exec chmod 755 {} +
+find "${staging_theme}" -type f -exec chmod 644 {} +
+find "${staging_theme}" -exec touch -t 200001010000.00 {} +
+
 (
 	cd "${staging_root}"
-	zip -q -r "${archive_path}" fieldnote
+	find fieldnote -type f -print | LC_ALL=C sort | zip -X -q "${archive_path}" -@
 )
 
 printf 'Created %s\n' "${archive_path}"
-

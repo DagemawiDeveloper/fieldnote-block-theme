@@ -22,16 +22,22 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: 24
-          package-manager-cache: false
+          cache: npm
 
-      - name: Run dependency-free theme validation
+      - name: Install locked Node dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Run theme and plugin validation
         run: npm test
+
+      - name: Run WordPress JavaScript and CSS linting
+        run: npm run lint
 
       - name: Check editor JavaScript syntax
         run: find plugins tests scripts -type f -name '*.js' -print0 | xargs -0 -n1 node --check
 
-      - name: Build installable ZIPs
-        run: npm run package
+      - name: Verify deterministic installable ZIPs
+        run: npm run package:verify
 
       - name: Inspect packaged files
         run: |
@@ -39,6 +45,33 @@ jobs:
           unzip -t dist/fieldnote-editorial-blocks.zip
           unzip -l dist/fieldnote.zip
           unzip -l dist/fieldnote-editorial-blocks.zip
+
+  php-standards:
+    name: WordPress PHP coding standards
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up PHP and Composer
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          coverage: none
+          tools: composer:v2
+
+      - name: Install PHP quality tools
+        run: composer install --no-interaction --no-progress --prefer-dist
+
+      - name: Preserve resolved PHP dependency lock
+        uses: actions/upload-artifact@v7
+        with:
+          name: fieldnote-composer-lock
+          path: composer.lock
+          if-no-files-found: error
+
+      - name: Run WordPress Coding Standards
+        run: composer run lint
 
   php-lint:
     name: PHP ${{ matrix.php }} syntax
@@ -64,8 +97,53 @@ jobs:
       - name: Lint PHP files
         run: find . -type f -name '*.php' -not -path './node_modules/*' -print0 | xargs -0 -n1 php -l
 
+  theme-review:
+    name: Official WordPress theme review
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install locked Node dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build clean theme package
+        run: |
+          npm run package:theme
+          mkdir -p review-theme
+          unzip -q dist/fieldnote.zip -d review-theme
+
+      - name: Run WordPress Theme Review Action
+        uses: WordPress/theme-review-action@trunk
+        with:
+          root-folder: review-theme/fieldnote
+          accessible-ready: true
+          ui-debug: true
+
+  plugin-review:
+    name: Official WordPress plugin review
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Run WordPress Plugin Check Action
+        uses: WordPress/plugin-check-action@main
+        with:
+          build-dir: plugins/fieldnote-editorial-blocks
+          wp-version: latest
+          strict: true
+
   e2e:
-    name: WordPress editor and accessibility
+    name: WordPress editor, routes, browsers, and accessibility
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -76,13 +154,13 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: 24
-          package-manager-cache: false
+          cache: npm
 
       - name: Install test dependencies
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
-      - name: Install Chromium
-        run: npx playwright install --with-deps chromium
+      - name: Install browser engines
+        run: npx playwright install --with-deps chromium firefox webkit
 
       - name: Start WordPress Playground
         run: npm run env:start

@@ -15,13 +15,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $post_id = isset( $attributes['postId'] ) ? absint( $attributes['postId'] ) : 0;
 $story   = $post_id ? get_post( $post_id ) : null;
+$host_id = isset( $block->context['postId'] ) ? absint( $block->context['postId'] ) : 0;
 
 if ( ! $story || 'post' !== $story->post_type || 'publish' !== $story->post_status ) {
 	$latest = get_posts(
 		array(
-			'numberposts' => 1,
-			'post_status' => 'publish',
-			'post_type'   => 'post',
+			'numberposts'  => 1,
+			'post__not_in' => $host_id ? array( $host_id ) : array(),
+			'post_status'  => 'publish',
+			'post_type'    => 'post',
 		)
 	);
 	$story  = $latest ? $latest[0] : null;

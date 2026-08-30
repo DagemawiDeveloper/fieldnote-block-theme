@@ -13,7 +13,7 @@ require_once ABSPATH . 'wp-admin/includes/file.php';
 require_once ABSPATH . 'wp-admin/includes/image.php';
 require_once ABSPATH . 'wp-admin/includes/media.php';
 
-if ( '1.0.0' === get_option( 'fieldnote_demo_seed_version' ) ) {
+if ( '1.0.1' === get_option( 'fieldnote_demo_seed_version' ) ) {
 	return;
 }
 
@@ -326,4 +326,4 @@ global $wp_rewrite;
 $wp_rewrite->set_permalink_structure( '/stories/%postname%/' );
 $wp_rewrite->flush_rules();
 
-update_option( 'fieldnote_demo_seed_version', '1.0.0' );
+update_option( 'fieldnote_demo_seed_version', '1.0.1' );

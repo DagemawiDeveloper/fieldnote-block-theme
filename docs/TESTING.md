@@ -10,7 +10,8 @@ Run the dependency-free theme and companion-plugin validators, then build and in
 
 ~~~bash
 npm test
-npm run package
+npm run lint
+npm run package:verify
 unzip -t dist/fieldnote.zip
 unzip -t dist/fieldnote-editorial-blocks.zip
 ~~~
@@ -20,8 +21,8 @@ unzip -t dist/fieldnote-editorial-blocks.zip
 Start WordPress 7.1 with the theme and companion plugin mounted, then run the critical Playwright flows:
 
 ~~~bash
-npm install
-npx playwright install chromium
+npm ci
+npx playwright install chromium firefox webkit
 npm run env:start
 npm run test:e2e
 npm run env:stop
@@ -32,10 +33,14 @@ The suite verifies:
 - Issue Details and Lead Story can be inserted in the editor.
 - Important block attributes serialize into post content.
 - A specifically selected story renders instead of relying on an accidental global query.
+- Lead Story layout, image position, category, and excerpt controls affect the public output.
+- An unavailable selection falls back without selecting the post that contains the block.
 - Both public block components are visible with expected headings.
-- Scoped axe checks return no WCAG 2.0/2.1 A/AA violations.
+- A complete public story route has one header, main, and footer landmark.
+- Search, 404, site-aware internal links, and a 390px viewport behave without routing or overflow regressions.
+- Whole-page axe checks return no tested WCAG 2.0/2.1 A/AA violations.
 
-The automated browser suite intentionally covers critical paths, not every editor option.
+The suite runs in desktop Chromium, mobile Chromium, Firefox, and WebKit. It intentionally covers critical paths, not every editor option or assistive-technology combination.
 
 ## Activation and routes
 

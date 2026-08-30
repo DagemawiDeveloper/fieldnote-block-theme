@@ -23,7 +23,7 @@
 		<!-- wp:buttons {"style":{"spacing":{"margin":{"top":"var:preset|spacing|50"}}}} -->
 		<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--50)">
 			<!-- wp:button {"backgroundColor":"saffron","textColor":"ink"} -->
-			<div class="wp-block-button"><a class="wp-block-button__link has-ink-color has-saffron-background-color has-text-color has-background wp-element-button" href="/newsletter"><?php echo esc_html_x( 'Join the field letter', 'Newsletter action', 'fieldnote' ); ?></a></div>
+			<div class="wp-block-button"><a class="wp-block-button__link has-ink-color has-saffron-background-color has-text-color has-background wp-element-button" href="<?php echo esc_url( home_url( '/newsletter/' ) ); ?>"><?php echo esc_html_x( 'Join the field letter', 'Newsletter action', 'fieldnote' ); ?></a></div>
 			<!-- /wp:button -->
 		</div>
 		<!-- /wp:buttons -->

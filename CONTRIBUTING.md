@@ -5,11 +5,11 @@ Fieldnote is a focused portfolio project, but changes should still be reviewable
 ## Development loop
 
 1. Create a small branch with one clear purpose.
-2. Run `npm test` before starting WordPress.
+2. Run `npm test` and `npm run lint` before starting WordPress.
 3. Use `npm run env:start` for WordPress 7.1 with the theme and companion plugin mounted.
 4. Test the changed editor flow and its public rendering at desktop, Tablet, and Mobile widths.
 5. Run `npm run test:e2e` for changes affecting either custom block.
-6. Run `npm run package` and inspect both ZIP files.
+6. Run `npm run package:verify` and inspect both deterministic ZIP files.
 7. Record meaningful behavior or architectural changes in the changelog and relevant docs.
 
 ## Engineering expectations

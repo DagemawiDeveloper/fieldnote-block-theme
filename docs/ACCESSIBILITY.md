@@ -15,7 +15,7 @@ Fieldnote treats accessibility as a design constraint rather than a final audit 
 
 ## Automated coverage
 
-The Playwright suite inserts both custom blocks through the WordPress editor, renders them through a real WordPress request, and runs axe against the two block components using WCAG 2.0 and 2.1 A/AA tags.
+The Playwright suite inserts both custom blocks through the WordPress editor, renders them through a real WordPress request, and runs axe using WCAG 2.0 and 2.1 A/AA tags. It also audits a complete public story route, verifies semantic page landmarks, and checks narrow-screen overflow across desktop Chromium, mobile Chromium, Firefox, and WebKit projects.
 
 Automated results are a regression signal, not proof that a complete publication is barrier-free.
 

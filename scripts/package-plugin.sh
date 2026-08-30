@@ -30,9 +30,13 @@ done
 mkdir -p "${staging_plugin}/blocks"
 cp -R "${plugin_source}/blocks/." "${staging_plugin}/blocks/"
 
+find "${staging_plugin}" -type d -exec chmod 755 {} +
+find "${staging_plugin}" -type f -exec chmod 644 {} +
+find "${staging_plugin}" -exec touch -t 200001010000.00 {} +
+
 (
 	cd "${staging_root}"
-	zip -q -r "${archive_path}" fieldnote-editorial-blocks
+	find fieldnote-editorial-blocks -type f -print | LC_ALL=C sort | zip -X -q "${archive_path}" -@
 )
 
 printf 'Created %s\n' "${archive_path}"
