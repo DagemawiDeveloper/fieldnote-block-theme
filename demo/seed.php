@@ -5,7 +5,8 @@
  * This file is loaded only by blueprint.json. It is intentionally kept out of
  * both installable ZIP files and never runs in a normal theme or plugin setup.
  *
- * @package FieldnoteDemo
+ * @package Fieldnote
+ * @subpackage Demo
  */
 
 require_once '/wordpress/wp-load.php';
@@ -39,7 +40,7 @@ function fieldnote_demo_import_image( $filename, $title ) {
 	$id   = media_handle_sideload( $file, 0, $title );
 
 	if ( is_wp_error( $id ) ) {
-		@unlink( $tempfile ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- Best-effort demo cleanup.
+		wp_delete_file( $tempfile );
 		return 0;
 	}
 
@@ -137,12 +138,12 @@ if ( ! $second_author ) {
 $category_names = array( 'Cities', 'Environment', 'Fieldwork', 'Health', 'Technology' );
 $categories     = array();
 foreach ( $category_names as $category_name ) {
-	$term = term_exists( $category_name, 'category' );
-	if ( ! $term ) {
-		$term = wp_insert_term( $category_name, 'category' );
+	$category_term = term_exists( $category_name, 'category' );
+	if ( ! $category_term ) {
+		$category_term = wp_insert_term( $category_name, 'category' );
 	}
-	if ( ! is_wp_error( $term ) ) {
-		$categories[ $category_name ] = (int) ( is_array( $term ) ? $term['term_id'] : $term );
+	if ( ! is_wp_error( $category_term ) ) {
+		$categories[ $category_name ] = (int) ( is_array( $category_term ) ? $category_term['term_id'] : $category_term );
 	}
 }
 
@@ -254,8 +255,8 @@ foreach ( $stories as $index => $story ) {
 		continue;
 	}
 
-	$author_id = ( $second_author && 1 === $index % 2 ) ? $second_author->ID : 1;
-	$post_id   = wp_insert_post(
+	$author_id       = ( $second_author && 1 === $index % 2 ) ? $second_author->ID : 1;
+	$created_post_id = wp_insert_post(
 		array(
 			'post_author'   => $author_id,
 			'post_category' => array( $categories[ $story['category'] ] ),
@@ -270,44 +271,44 @@ foreach ( $stories as $index => $story ) {
 		true
 	);
 
-	if ( ! is_wp_error( $post_id ) && $image_ids ) {
-		set_post_thumbnail( $post_id, $image_ids[ $index % count( $image_ids ) ] );
+	if ( ! is_wp_error( $created_post_id ) && $image_ids ) {
+		set_post_thumbnail( $created_post_id, $image_ids[ $index % count( $image_ids ) ] );
 	}
 }
 
-$pages = array(
+$demo_pages = array(
 	'editorial-blocks' => array(
 		'title'   => 'Editorial Blocks',
 		'content' => '<!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} --><div class="wp-block-group alignwide" style="padding-top:var(--wp--preset--spacing--70)"><!-- wp:paragraph {"className":"fieldnote-kicker","textColor":"clay-dark"} --><p class="fieldnote-kicker has-clay-dark-color has-text-color">Fieldnote 1.0 / Block lab</p><!-- /wp:paragraph --><!-- wp:heading {"level":1,"fontSize":"display"} --><h1 class="wp-block-heading has-display-font-size">Editorial controls, rendered with care.</h1><!-- /wp:heading --><!-- wp:paragraph {"textColor":"graphite","fontSize":"lead"} --><p class="has-graphite-color has-text-color has-lead-font-size">These optional dynamic blocks keep content behavior in a companion plugin while the theme remains lightweight and portable.</p><!-- /wp:paragraph --></div><!-- /wp:group --><!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} --><div class="wp-block-group alignwide" style="margin-top:var(--wp--preset--spacing--60)"><!-- wp:columns {"verticalAlignment":"stretch"} --><div class="wp-block-columns are-vertically-aligned-stretch"><!-- wp:column {"verticalAlignment":"stretch","width":"36%"} --><div class="wp-block-column is-vertically-aligned-stretch" style="flex-basis:36%"><!-- wp:fieldnote/issue-details /--></div><!-- /wp:column --><!-- wp:column {"verticalAlignment":"stretch","width":"64%"} --><div class="wp-block-column is-vertically-aligned-stretch" style="flex-basis:64%"><!-- wp:fieldnote/lead-story {"layout":"stacked"} /--></div><!-- /wp:column --></div><!-- /wp:columns --></div><!-- /wp:group --><!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} --><div class="wp-block-group alignwide" style="margin-top:var(--wp--preset--spacing--70)"><!-- wp:fieldnote/lead-story {"imagePosition":"right","eyebrow":"Selected from the journal"} /--></div><!-- /wp:group -->',
 	),
-	'about'         => array(
+	'about'            => array(
 		'title'   => 'About Fieldnote',
 		'content' => '<!-- wp:heading {"level":1,"fontSize":"display"} --><h1 class="wp-block-heading has-display-font-size">Reporting made to last.</h1><!-- /wp:heading --><!-- wp:paragraph {"fontSize":"lead"} --><p class="has-lead-font-size">Fieldnote is a fictional independent publication created to demonstrate a native WordPress editorial system.</p><!-- /wp:paragraph -->',
 	),
-	'newsletter'    => array(
+	'newsletter'       => array(
 		'title'   => 'The Field Letter',
 		'content' => '<!-- wp:heading {"level":1,"fontSize":"display"} --><h1 class="wp-block-heading has-display-font-size">One useful letter, occasionally.</h1><!-- /wp:heading --><!-- wp:paragraph {"fontSize":"lead"} --><p class="has-lead-font-size">A demonstration signup page for the Fieldnote portfolio project. No form data is collected in Playground.</p><!-- /wp:paragraph -->',
 	),
-	'privacy'       => array(
+	'privacy'          => array(
 		'title'   => 'Privacy',
 		'content' => '<!-- wp:heading {"level":1,"fontSize":"display"} --><h1 class="wp-block-heading has-display-font-size">Privacy</h1><!-- /wp:heading --><!-- wp:paragraph --><p>This disposable demonstration installs no analytics, trackers, or remote font services.</p><!-- /wp:paragraph -->',
 	),
-	'accessibility' => array(
+	'accessibility'    => array(
 		'title'   => 'Accessibility',
 		'content' => '<!-- wp:heading {"level":1,"fontSize":"display"} --><h1 class="wp-block-heading has-display-font-size">Accessibility</h1><!-- /wp:heading --><!-- wp:paragraph --><p>Fieldnote is designed around visible focus, semantic landmarks, resilient layouts, reduced motion, strong contrast, and readable print output.</p><!-- /wp:paragraph -->',
 	),
 );
 
-foreach ( $pages as $slug => $page ) {
+foreach ( $demo_pages as $slug => $demo_page ) {
 	if ( get_page_by_path( $slug ) ) {
 		continue;
 	}
 	wp_insert_post(
 		array(
-			'post_content' => $page['content'],
+			'post_content' => $demo_page['content'],
 			'post_name'    => $slug,
 			'post_status'  => 'publish',
-			'post_title'   => $page['title'],
+			'post_title'   => $demo_page['title'],
 			'post_type'    => 'page',
 		)
 	);

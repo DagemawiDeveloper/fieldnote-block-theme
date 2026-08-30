@@ -5,7 +5,10 @@
  * Categories: fieldnote-sections, call-to-action
  * Description: A content-only editor’s note with a numbered margin label and one action.
  * Viewport Width: 1200
+ *
+ * @package Fieldnote
  */
+
 ?>
 <!-- wp:group {"align":"wide","backgroundColor":"paper","metadata":{"name":"Editorial note"},"templateLock":"contentOnly","style":{"border":{"color":"var:preset|color|line","radius":"0.45rem","style":"solid","width":"1px"},"spacing":{"margin":{"top":"var:preset|spacing|70"},"padding":{"bottom":"var:preset|spacing|60","left":"var:preset|spacing|60","right":"var:preset|spacing|60","top":"var:preset|spacing|60"}}},"layout":{"type":"default"}} -->
 <div class="wp-block-group alignwide has-border-color has-paper-background-color has-background" style="border-color:var(--wp--preset--color--line);border-style:solid;border-width:1px;border-radius:0.45rem;margin-top:var(--wp--preset--spacing--70);padding-top:var(--wp--preset--spacing--60);padding-right:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60);padding-left:var(--wp--preset--spacing--60)">

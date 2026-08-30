@@ -4,7 +4,10 @@
  * Slug: fieldnote/header-newsletter-action
  * Description: A portable header action that resolves from the active site URL.
  * Inserter: no
+ *
+ * @package Fieldnote
  */
+
 ?>
 <!-- wp:buttons {"className":"fieldnote-header-action"} -->
 <div class="wp-block-buttons fieldnote-header-action">

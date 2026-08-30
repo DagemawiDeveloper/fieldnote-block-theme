@@ -5,7 +5,10 @@
  * Categories: fieldnote-sections, call-to-action
  * Description: A content-locked reader invitation with strong contrast and one clear action.
  * Viewport Width: 1280
+ *
+ * @package Fieldnote
  */
+
 ?>
 <!-- wp:group {"align":"wide","className":"fieldnote-newsletter","backgroundColor":"moss","textColor":"white","metadata":{"name":"Field letter invitation"},"templateLock":"contentOnly","style":{"border":{"radius":"0.5rem"},"spacing":{"margin":{"top":"var:preset|spacing|70"},"padding":{"bottom":"var:preset|spacing|60","left":"var:preset|spacing|60","right":"var:preset|spacing|60","top":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignwide fieldnote-newsletter has-white-color has-moss-background-color has-text-color has-background" style="border-radius:0.5rem;margin-top:var(--wp--preset--spacing--70);padding-top:var(--wp--preset--spacing--60);padding-right:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60);padding-left:var(--wp--preset--spacing--60)">

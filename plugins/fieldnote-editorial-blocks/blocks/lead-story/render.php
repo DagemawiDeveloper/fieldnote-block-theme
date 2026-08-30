@@ -13,9 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$post_id = isset( $attributes['postId'] ) ? absint( $attributes['postId'] ) : 0;
-$story   = $post_id ? get_post( $post_id ) : null;
-$host_id = isset( $block->context['postId'] ) ? absint( $block->context['postId'] ) : 0;
+$selected_post_id = isset( $attributes['postId'] ) ? absint( $attributes['postId'] ) : 0;
+$story            = $selected_post_id ? get_post( $selected_post_id ) : null;
+$host_id          = isset( $block->context['postId'] ) ? absint( $block->context['postId'] ) : 0;
 
 if ( ! $story || 'post' !== $story->post_type || 'publish' !== $story->post_status ) {
 	$latest = get_posts(

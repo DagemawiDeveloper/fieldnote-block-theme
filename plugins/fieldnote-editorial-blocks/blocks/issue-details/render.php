@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $defaults = array(
-	'eyebrow'    => __( 'Field journal / 2026', 'fieldnote-editorial-blocks' ),
+	'eyebrow'     => __( 'Field journal / 2026', 'fieldnote-editorial-blocks' ),
 	'issueNumber' => '08',
 	'title'       => __( 'Notes from the edge', 'fieldnote-editorial-blocks' ),
 	'summary'     => __( 'Patient technology, public spaces, and the quiet work behind lasting change.', 'fieldnote-editorial-blocks' ),
