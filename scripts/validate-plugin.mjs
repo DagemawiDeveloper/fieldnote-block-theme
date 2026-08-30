@@ -267,10 +267,13 @@ if ( fs.existsSync( leadRender ) ) {
 		) }: post context is required for self-reference protection`,
 	);
 	assert(
-		source.includes( "'post__not_in'" ),
+		source.includes( "'numberposts' => 2" ) &&
+			source.includes(
+				'$fieldnote_candidate->ID !== $fieldnote_host_id',
+			),
 		`${ relative(
 			leadRender,
-		) }: fallback query must exclude the containing post`,
+		) }: fallback selection must skip the containing post without an exclusionary query`,
 	);
 	assert(
 		source.includes( 'aria-label=' ),

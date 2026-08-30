@@ -409,8 +409,16 @@ assert(
 	'parts/header.html: announcement template part is missing',
 );
 assert(
-	read( 'parts/header.html' ).includes( 'wp:navigation' ),
-	'parts/header.html: Navigation block is missing',
+	read( 'parts/header.html' ).includes(
+		'"slug":"fieldnote/header-primary-navigation"',
+	),
+	'parts/header.html: portable primary navigation pattern is missing',
+);
+assert(
+	read( 'parts/footer.html' ).includes(
+		'"slug":"fieldnote/footer-explore-navigation"',
+	),
+	'parts/footer.html: portable explore navigation pattern is missing',
 );
 assert(
 	! read( 'parts/header.html' ).includes( '"tagName":"header"' ),
@@ -484,6 +492,21 @@ for ( const lockedPattern of [
 			'"templateLock":"contentOnly"',
 		),
 		`patterns/${ lockedPattern }: content-only editorial lock is missing`,
+	);
+}
+
+for ( const navigationPattern of [
+	'patterns/header-primary-navigation.php',
+	'patterns/footer-explore-navigation.php',
+] ) {
+	const source = read( navigationPattern );
+	assert(
+		source.includes( 'wp:navigation-link' ),
+		`${ navigationPattern }: explicit Navigation Link blocks are missing`,
+	);
+	assert(
+		! source.includes( 'wp:page-list' ),
+		`${ navigationPattern }: Page List must not be nested directly in Navigation`,
 	);
 }
 

@@ -189,7 +189,9 @@
 				}
 			},
 			"link": {
-				"color": {"text": "var:preset|color|clay-dark"},
+				"color": {
+					"text": "var(--fieldnote-link-color, var(--wp--preset--color--clay-dark))"
+				},
 				"typography": {"textDecoration": "underline"}
 			}
 		},

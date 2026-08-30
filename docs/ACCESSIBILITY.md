@@ -9,7 +9,8 @@ Fieldnote treats accessibility as a design constraint rather than a final audit 
 - Default text contrast above 7:1 and validated Button contrast at WCAG AA.
 - Responsive reading order that remains linear when editorial mosaics collapse.
 - Reduced-motion, increased-contrast, forced-colors-friendly foundations, and print treatments.
-- Core Navigation behavior instead of a custom menu implementation.
+- Core Navigation and explicit Navigation Link blocks instead of a custom menu implementation or invalid nested Page List markup.
+- Context-aware link colors that preserve the intended light-on-dark contrast in the announcement and footer.
 - Accessible names on linked story artwork and on the Issue Details region.
 - Semantic headings, time values, article wrappers, and real links in both custom blocks.
 

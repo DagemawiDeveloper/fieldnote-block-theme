@@ -80,6 +80,10 @@ The richer visual result comes from tokens, native blocks, layout, color, and ty
 
 Every template includes a semantic main landmark. Header and Footer are represented only by their template-part areas, avoiding duplicate landmarks. Core Navigation retains its keyboard and ARIA behavior.
 
+The default header and footer use explicit core Navigation Link blocks rather than an empty Navigation block that auto-inserts Page List. This keeps WordPress-native overlay behavior while ensuring each generated list has only valid list-item children. The links live in hidden PHP patterns so `home_url()` resolves correctly for root, subdirectory, and multisite installations.
+
+The global link color resolves through a contextual `--fieldnote-link-color` token. Light sections use the accessible clay-dark default, while dark announcement and footer surfaces set the token to white. This avoids a cascade-specific override and keeps dynamically generated category and policy links at the same accessible contrast.
+
 The theme also includes:
 
 - A visible three-pixel focus treatment.

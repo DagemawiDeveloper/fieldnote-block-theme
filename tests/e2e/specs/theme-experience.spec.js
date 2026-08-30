@@ -114,12 +114,17 @@ test.describe( 'Fieldnote public experience', () => {
 	} ) => {
 		await page.goto( '/' );
 
-		for ( const [ name, pathname ] of [
-			[ 'Get the field letter', '/newsletter/' ],
-			[ 'Privacy', '/privacy/' ],
-			[ 'Accessibility', '/accessibility/' ],
+		for ( const [ scope, name, pathname ] of [
+			[
+				'.fieldnote-header-action',
+				'Get the field letter',
+				'/newsletter/',
+			],
+			[ '.fieldnote-footer', 'Privacy', '/privacy/' ],
+			[ '.fieldnote-footer', 'Accessibility', '/accessibility/' ],
 		] ) {
 			const href = await page
+				.locator( scope )
 				.getByRole( 'link', { name, exact: true } )
 				.getAttribute( 'href' );
 			const resolved = new URL( href, page.url() );

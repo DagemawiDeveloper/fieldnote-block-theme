@@ -49,13 +49,14 @@ body {
 }
 
 .fieldnote-announcement {
+	--fieldnote-link-color: var(--wp--preset--color--white);
+
 	font-family: var(--wp--preset--font-family--field-mono);
 	font-size: var(--wp--preset--font-size--micro);
 	letter-spacing: 0.035em;
 }
 
 .fieldnote-announcement a {
-	color: inherit;
 	font-weight: 700;
 }
 
@@ -377,6 +378,10 @@ body {
 	font-weight: 600;
 	letter-spacing: -0.07em;
 	line-height: 0.8;
+}
+
+.fieldnote-footer {
+	--fieldnote-link-color: var(--wp--preset--color--white);
 }
 
 .fieldnote-footer-grid {

@@ -3,7 +3,9 @@
 ## 1.0.1 - 2026-08-30
 
 - Replaced root-relative publication links with site-aware URLs and added a validator that prevents regressions.
-- Added three hidden utility patterns so template parts retain native block markup while resolving links through WordPress.
+- Added five hidden utility patterns so template parts retain native block markup while resolving links through WordPress.
+- Replaced auto-generated Page List navigation with explicit Navigation Link blocks to preserve valid list semantics.
+- Added a contextual link-color token so links retain WCAG AA contrast on announcement and footer surfaces.
 - Prevented Lead Story fallback queries from selecting the post containing the block.
 - Added a locked Node toolchain, WordPress JavaScript/CSS linting, WordPress PHP coding standards, Theme Check, and Plugin Check.
 - Made both ZIP builders deterministic and added repeated-build SHA-256 verification.

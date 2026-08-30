@@ -20,4 +20,8 @@
 
 	<rule ref="WordPress-Extra"/>
 	<rule ref="WordPress-Docs"/>
+	<rule ref="Squiz.Commenting.FileComment.Missing">
+		<!-- Playground bootstrap scripts are misclassified even with a valid package docblock. -->
+		<exclude-pattern>demo/seed.php</exclude-pattern>
+	</rule>
 </ruleset>
