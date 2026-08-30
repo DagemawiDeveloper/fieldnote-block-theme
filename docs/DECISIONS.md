@@ -74,6 +74,8 @@ The Fieldnote theme and companion plugin ship no front-end JavaScript, remote fo
 
 System serif, sans, and mono stacks remove font requests and avoid layout shifts. WordPress handles responsive content images. Button interaction CSS is loaded through wp_enqueue_block_style(), allowing core to load or inline it in a block-aware way.
 
+The shared composition stylesheet is explicitly enqueued on the public site and registered as an editor style. This gives responsive editorial layouts and progressive enhancements one versioned source of truth across both surfaces; a Playwright assertion protects the public enqueue from regression.
+
 The richer visual result comes from tokens, native blocks, layout, color, and type—not from a heavier runtime.
 
 ## Accessibility as a system constraint

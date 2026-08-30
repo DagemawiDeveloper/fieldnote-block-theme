@@ -6,6 +6,7 @@
 - Added five hidden utility patterns so template parts retain native block markup while resolving links through WordPress.
 - Replaced auto-generated Page List navigation with explicit Navigation Link blocks to preserve valid list semantics.
 - Added a contextual link-color token so links retain WCAG AA contrast on announcement and footer surfaces.
+- Explicitly enqueued the shared composition stylesheet on the public site and added a browser regression assertion for it.
 - Prevented Lead Story fallback queries from selecting the post containing the block.
 - Added a locked Node toolchain, WordPress JavaScript/CSS linting, WordPress PHP coding standards, Theme Check, and Plugin Check.
 - Made both ZIP builders deterministic and added repeated-build SHA-256 verification.

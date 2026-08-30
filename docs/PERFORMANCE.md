@@ -9,6 +9,7 @@ Fieldnote aims for visual richness through composition, typography, tokens, and 
 - Zero remote fonts, CSS frameworks, analytics, or tracking calls.
 - System font stacks to avoid font downloads and font-driven layout shifts.
 - WordPress responsive image markup for featured media.
+- One versioned shared composition stylesheet used on both the public site and in the editor.
 - Block-aware Button CSS enqueued through `wp_enqueue_block_style()`.
 - Editor scripts load only inside WordPress administration.
 

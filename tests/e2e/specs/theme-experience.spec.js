@@ -55,6 +55,7 @@ test.describe( 'Fieldnote public experience', () => {
 	} ) => {
 		await page.goto( `/?p=${ story.id }` );
 
+		await expect( page.locator( 'link#fieldnote-style-css' ) ).toHaveCount( 1 );
 		await expect( page.locator( 'header' ) ).toHaveCount( 1 );
 		await expect( page.locator( 'main' ) ).toHaveCount( 1 );
 		await expect( page.locator( 'footer' ) ).toHaveCount( 1 );

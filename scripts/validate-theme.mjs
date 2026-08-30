@@ -219,6 +219,14 @@ assert(
 	'style.css: remote assets are not allowed',
 );
 
+const themeFunctions = read( 'functions.php' );
+assert(
+	themeFunctions.includes( "add_action( 'wp_enqueue_scripts'" ) &&
+		themeFunctions.includes( 'get_stylesheet_uri()' ) &&
+		themeFunctions.includes( "'fieldnote-style'" ),
+	'functions.php: the public theme stylesheet must be explicitly enqueued',
+);
+
 const theme = parseJson( 'theme.json' );
 if ( theme ) {
 	assert(
