@@ -1,8 +1,12 @@
 # Fieldnote
 
+[![Theme checks](https://github.com/DagemawiDeveloper/fieldnote-block-theme/actions/workflows/theme-checks.yml/badge.svg)](https://github.com/DagemawiDeveloper/fieldnote-block-theme/actions/workflows/theme-checks.yml)
+
 Fieldnote is a small, accessibility-minded WordPress block theme for editorial sites. It is a personal engineering project built to practice and demonstrate current block-theme architecture: `theme.json`, Site Editor templates, template parts, patterns, style variations, and a deliberately constrained editorial workflow.
 
 It is not a production client theme and has not been submitted to the WordPress.org theme directory.
+
+![Fieldnote editorial homepage preview](screenshot.png)
 
 ## What it demonstrates
 
