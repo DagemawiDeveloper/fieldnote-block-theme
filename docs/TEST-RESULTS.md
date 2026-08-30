@@ -1,5 +1,23 @@
 # Verification results
 
+## Fieldnote 1.0.1
+
+Release-hardening checks completed on August 30, 2026:
+
+- Locked JavaScript dependencies install cleanly, `npm audit --omit=optional` reports zero vulnerabilities, and official WordPress JavaScript and CSS linting passes.
+- Theme and companion-plugin structural validation passes for ten templates, three template parts, fourteen patterns, two global styles, four scoped styles, two dynamic blocks, and the one-click Playground demo.
+- Repeated theme and plugin builds produce byte-identical installable ZIPs.
+- Portable link validation rejects root-relative publication URLs, while explicit Navigation Link blocks preserve valid list semantics.
+- The public site explicitly loads the shared composition stylesheet; full-page axe checks confirm accessible dark-surface link contrast.
+
+The [Fieldnote 1.0.1 hardening workflow](https://github.com/DagemawiDeveloper/fieldnote-block-theme/actions/runs/33338537656) completed successfully on August 30, 2026. From a clean checkout it confirmed:
+
+- PHP syntax across PHP 7.4, 8.2, 8.3, and 8.4.
+- WordPress PHP Coding Standards, the official Theme Review Action, and strict Plugin Check.
+- Deterministic theme and companion-plugin package integrity.
+- Twenty-eight Playwright cases across desktop Chromium, mobile Chromium, Firefox, and WebKit.
+- Editor insertion and presentation controls, server-rendered fallback behavior, public routes, semantic landmarks, 390-pixel overflow, active-site URL resolution, and whole-page WCAG 2.0/2.1 A/AA axe coverage.
+
 ## Fieldnote 1.0.0
 
 Local release checks completed on August 30, 2026:
