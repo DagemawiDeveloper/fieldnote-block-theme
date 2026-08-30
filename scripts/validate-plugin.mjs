@@ -269,7 +269,7 @@ if ( fs.existsSync( leadRender ) ) {
 	assert(
 		source.includes( "'numberposts' => 2" ) &&
 			source.includes(
-				'$fieldnote_candidate->ID !== $fieldnote_host_id',
+				'$fieldnote_editorial_blocks_candidate->ID !== $fieldnote_editorial_blocks_host_id',
 			),
 		`${ relative(
 			leadRender,

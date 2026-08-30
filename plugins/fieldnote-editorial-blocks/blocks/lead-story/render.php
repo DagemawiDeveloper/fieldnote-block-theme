@@ -13,84 +13,84 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$fieldnote_selected_post_id = isset( $attributes['postId'] ) ? absint( $attributes['postId'] ) : 0;
-$fieldnote_story            = $fieldnote_selected_post_id ? get_post( $fieldnote_selected_post_id ) : null;
-$fieldnote_host_id          = isset( $block->context['postId'] ) ? absint( $block->context['postId'] ) : 0;
+$fieldnote_editorial_blocks_selected_post_id = isset( $attributes['postId'] ) ? absint( $attributes['postId'] ) : 0;
+$fieldnote_editorial_blocks_story            = $fieldnote_editorial_blocks_selected_post_id ? get_post( $fieldnote_editorial_blocks_selected_post_id ) : null;
+$fieldnote_editorial_blocks_host_id          = isset( $block->context['postId'] ) ? absint( $block->context['postId'] ) : 0;
 
 if (
-	! $fieldnote_story ||
-	'post' !== $fieldnote_story->post_type ||
-	'publish' !== $fieldnote_story->post_status ||
-	( $fieldnote_host_id && $fieldnote_host_id === $fieldnote_story->ID )
+	! $fieldnote_editorial_blocks_story ||
+	'post' !== $fieldnote_editorial_blocks_story->post_type ||
+	'publish' !== $fieldnote_editorial_blocks_story->post_status ||
+	( $fieldnote_editorial_blocks_host_id && $fieldnote_editorial_blocks_host_id === $fieldnote_editorial_blocks_story->ID )
 ) {
-	$fieldnote_candidates = get_posts(
+	$fieldnote_editorial_blocks_candidates = get_posts(
 		array(
 			'numberposts' => 2,
 			'post_status' => 'publish',
 			'post_type'   => 'post',
 		)
 	);
-	$fieldnote_story      = null;
+	$fieldnote_editorial_blocks_story      = null;
 
-	foreach ( $fieldnote_candidates as $fieldnote_candidate ) {
-		if ( $fieldnote_candidate->ID !== $fieldnote_host_id ) {
-			$fieldnote_story = $fieldnote_candidate;
+	foreach ( $fieldnote_editorial_blocks_candidates as $fieldnote_editorial_blocks_candidate ) {
+		if ( $fieldnote_editorial_blocks_candidate->ID !== $fieldnote_editorial_blocks_host_id ) {
+			$fieldnote_editorial_blocks_story = $fieldnote_editorial_blocks_candidate;
 			break;
 		}
 	}
 }
 
-if ( ! $fieldnote_story ) {
+if ( ! $fieldnote_editorial_blocks_story ) {
 	return;
 }
 
-$fieldnote_layout         = isset( $attributes['layout'] ) && in_array( $attributes['layout'], array( 'split', 'stacked' ), true ) ? $attributes['layout'] : 'split';
-$fieldnote_image_position = isset( $attributes['imagePosition'] ) && 'right' === $attributes['imagePosition'] ? 'right' : 'left';
-$fieldnote_show_category  = ! isset( $attributes['showCategory'] ) || (bool) $attributes['showCategory'];
-$fieldnote_show_excerpt   = ! isset( $attributes['showExcerpt'] ) || (bool) $attributes['showExcerpt'];
-$fieldnote_eyebrow        = isset( $attributes['eyebrow'] ) ? $attributes['eyebrow'] : __( 'Featured dispatch', 'fieldnote-editorial-blocks' );
-$fieldnote_categories     = get_the_category( $fieldnote_story->ID );
-$fieldnote_category       = $fieldnote_categories ? $fieldnote_categories[0] : null;
-$fieldnote_excerpt        = get_the_excerpt( $fieldnote_story );
-$fieldnote_image          = get_the_post_thumbnail(
-	$fieldnote_story->ID,
+$fieldnote_editorial_blocks_layout         = isset( $attributes['layout'] ) && in_array( $attributes['layout'], array( 'split', 'stacked' ), true ) ? $attributes['layout'] : 'split';
+$fieldnote_editorial_blocks_image_position = isset( $attributes['imagePosition'] ) && 'right' === $attributes['imagePosition'] ? 'right' : 'left';
+$fieldnote_editorial_blocks_show_category  = ! isset( $attributes['showCategory'] ) || (bool) $attributes['showCategory'];
+$fieldnote_editorial_blocks_show_excerpt   = ! isset( $attributes['showExcerpt'] ) || (bool) $attributes['showExcerpt'];
+$fieldnote_editorial_blocks_eyebrow        = isset( $attributes['eyebrow'] ) ? $attributes['eyebrow'] : __( 'Featured dispatch', 'fieldnote-editorial-blocks' );
+$fieldnote_editorial_blocks_categories     = get_the_category( $fieldnote_editorial_blocks_story->ID );
+$fieldnote_editorial_blocks_category       = $fieldnote_editorial_blocks_categories ? $fieldnote_editorial_blocks_categories[0] : null;
+$fieldnote_editorial_blocks_excerpt        = get_the_excerpt( $fieldnote_editorial_blocks_story );
+$fieldnote_editorial_blocks_image          = get_the_post_thumbnail(
+	$fieldnote_editorial_blocks_story->ID,
 	'large',
 	array(
 		'class'    => 'fieldnote-lead-story__image',
 		'decoding' => 'async',
 	)
 );
-$fieldnote_classes        = sprintf( 'fieldnote-lead-story is-layout-%1$s is-image-%2$s', $fieldnote_layout, $fieldnote_image_position );
-$fieldnote_media_label    = sprintf(
+$fieldnote_editorial_blocks_classes        = sprintf( 'fieldnote-lead-story is-layout-%1$s is-image-%2$s', $fieldnote_editorial_blocks_layout, $fieldnote_editorial_blocks_image_position );
+$fieldnote_editorial_blocks_media_label    = sprintf(
 	/* translators: %s: post title. */
 	__( 'Read %s', 'fieldnote-editorial-blocks' ),
-	get_the_title( $fieldnote_story )
+	get_the_title( $fieldnote_editorial_blocks_story )
 );
 ?>
-<article <?php echo get_block_wrapper_attributes( array( 'class' => $fieldnote_classes ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
-	<a class="fieldnote-lead-story__media" href="<?php echo esc_url( get_permalink( $fieldnote_story ) ); ?>" aria-label="<?php echo esc_attr( $fieldnote_media_label ); ?>">
-		<?php if ( $fieldnote_image ) : ?>
-			<?php echo $fieldnote_image; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Generated by core. ?>
+<article <?php echo get_block_wrapper_attributes( array( 'class' => $fieldnote_editorial_blocks_classes ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+	<a class="fieldnote-lead-story__media" href="<?php echo esc_url( get_permalink( $fieldnote_editorial_blocks_story ) ); ?>" aria-label="<?php echo esc_attr( $fieldnote_editorial_blocks_media_label ); ?>">
+		<?php if ( $fieldnote_editorial_blocks_image ) : ?>
+			<?php echo $fieldnote_editorial_blocks_image; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Generated by core. ?>
 		<?php else : ?>
 			<span class="fieldnote-lead-story__placeholder"><span>FN</span></span>
 		<?php endif; ?>
 	</a>
 
 	<div class="fieldnote-lead-story__content">
-		<p class="fieldnote-lead-story__eyebrow"><?php echo esc_html( $fieldnote_eyebrow ); ?></p>
-		<?php if ( $fieldnote_show_category && $fieldnote_category ) : ?>
-			<a class="fieldnote-lead-story__category" href="<?php echo esc_url( get_category_link( $fieldnote_category ) ); ?>"><?php echo esc_html( $fieldnote_category->name ); ?></a>
+		<p class="fieldnote-lead-story__eyebrow"><?php echo esc_html( $fieldnote_editorial_blocks_eyebrow ); ?></p>
+		<?php if ( $fieldnote_editorial_blocks_show_category && $fieldnote_editorial_blocks_category ) : ?>
+			<a class="fieldnote-lead-story__category" href="<?php echo esc_url( get_category_link( $fieldnote_editorial_blocks_category ) ); ?>"><?php echo esc_html( $fieldnote_editorial_blocks_category->name ); ?></a>
 		<?php endif; ?>
 
-		<h2 class="fieldnote-lead-story__title"><a href="<?php echo esc_url( get_permalink( $fieldnote_story ) ); ?>"><?php echo esc_html( get_the_title( $fieldnote_story ) ); ?></a></h2>
+		<h2 class="fieldnote-lead-story__title"><a href="<?php echo esc_url( get_permalink( $fieldnote_editorial_blocks_story ) ); ?>"><?php echo esc_html( get_the_title( $fieldnote_editorial_blocks_story ) ); ?></a></h2>
 
-		<?php if ( $fieldnote_show_excerpt && $fieldnote_excerpt ) : ?>
-			<p class="fieldnote-lead-story__excerpt"><?php echo esc_html( wp_trim_words( $fieldnote_excerpt, 34 ) ); ?></p>
+		<?php if ( $fieldnote_editorial_blocks_show_excerpt && $fieldnote_editorial_blocks_excerpt ) : ?>
+			<p class="fieldnote-lead-story__excerpt"><?php echo esc_html( wp_trim_words( $fieldnote_editorial_blocks_excerpt, 34 ) ); ?></p>
 		<?php endif; ?>
 
 		<div class="fieldnote-lead-story__meta">
-			<span><?php echo esc_html( get_the_author_meta( 'display_name', $fieldnote_story->post_author ) ); ?></span>
-			<time datetime="<?php echo esc_attr( get_the_date( DATE_W3C, $fieldnote_story ) ); ?>"><?php echo esc_html( get_the_date( '', $fieldnote_story ) ); ?></time>
+			<span><?php echo esc_html( get_the_author_meta( 'display_name', $fieldnote_editorial_blocks_story->post_author ) ); ?></span>
+			<time datetime="<?php echo esc_attr( get_the_date( DATE_W3C, $fieldnote_editorial_blocks_story ) ); ?>"><?php echo esc_html( get_the_date( '', $fieldnote_editorial_blocks_story ) ); ?></time>
 		</div>
 	</div>
 </article>
