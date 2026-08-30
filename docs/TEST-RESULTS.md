@@ -1,5 +1,17 @@
 # Verification results
 
+## Fieldnote 1.0.0
+
+Local release checks completed on August 30, 2026:
+
+- Theme validation passes for ten templates, three template parts, nine patterns, two global styles, four section/block styles, and the WordPress 7.1 responsive and interaction states.
+- Companion-plugin validation passes for two metadata-registered dynamic blocks, two editor patterns, four local demo images, the one-click Playground blueprint, and Playwright/axe coverage files.
+- Every editor JavaScript and test file passes Node syntax checking.
+- Both installable archives build successfully and pass ZIP integrity checks.
+- Visual review passed for the four local demo illustrations and the 1600×1000 editorial-blocks preview.
+
+The current workspace does not provide a native PHP binary or a stable interactive WordPress browser runtime. PHP matrix linting and the real WordPress editor/accessibility suite are therefore required GitHub Actions jobs rather than being represented as local results. The latest workflow run is the source of truth for those checks.
+
 ## Fieldnote 0.2.0
 
 Repository checks completed on August 30, 2026:

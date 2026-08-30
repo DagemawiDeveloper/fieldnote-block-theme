@@ -3,7 +3,7 @@ Contributors: dagemawideveloper
 Requires at least: 7.1
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.2.0
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,6 +22,12 @@ The theme ships no front-end JavaScript, remote fonts, CSS framework, tracking c
 3. Open Appearance > Editor to adjust templates, template parts, styles, and patterns.
 
 == Changelog ==
+
+= 1.0.0 =
+* Added an optional companion plugin with two dynamic editorial blocks and two patterns.
+* Added a one-click WordPress Playground demo with representative local content and imagery.
+* Added companion-plugin validation and separate reproducible ZIP packaging.
+* Promoted the theme and editorial system to a documented portfolio release.
 
 = 0.2.0 =
 * Rebuilt the visual system around a premium field-journal direction.

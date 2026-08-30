@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title description">
+	<title id="title">Field method</title>
+	<desc id="description">Layered survey paths and map marks on a tactile paper ground.</desc>
+	<rect width="1600" height="1000" fill="#f3f0e8"/>
+	<path d="M0 140h1600M0 340h1600M0 540h1600M0 740h1600M0 940h1600" stroke="#d8d2c4" stroke-width="2"/>
+	<path d="M180 0v1000M480 0v1000M780 0v1000M1080 0v1000M1380 0v1000" stroke="#d8d2c4" stroke-width="2"/>
+	<path d="M110 790C300 680 350 310 610 350s315 350 545 210 155-340 360-410" fill="none" stroke="#3f5d49" stroke-linecap="round" stroke-width="28"/>
+	<path d="M110 790C300 680 350 310 610 350s315 350 545 210 155-340 360-410" fill="none" stroke="#bfd8db" stroke-dasharray="4 52" stroke-linecap="round" stroke-width="11"/>
+	<g fill="#b84932" stroke="#fbfaf6" stroke-width="12">
+		<circle cx="110" cy="790" r="42"/>
+		<circle cx="610" cy="350" r="42"/>
+		<circle cx="1155" cy="560" r="42"/>
+		<circle cx="1515" cy="150" r="42"/>
+	</g>
+	<path d="M122 95h360" stroke="#161a1d" stroke-width="9"/>
+	<path d="M122 128h165" stroke="#161a1d" stroke-width="3"/>
+	<circle cx="1320" cy="820" r="92" fill="#dba83c"/>
+</svg>

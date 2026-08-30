@@ -1,6 +1,27 @@
 # Engineering decisions
 
-This note records the reasoning behind Fieldnote 0.2.0. The intent is to make the work reviewable: each visual choice should have a clear editorial or engineering purpose.
+This note records the reasoning behind Fieldnote 1.0. The intent is to make the work reviewable: each visual choice and technical boundary should have a clear editorial or engineering purpose.
+
+## Theme and plugin are separate products
+
+Fieldnote 1.0 adds custom editorial behavior without placing it in the theme. The companion plugin owns Issue Details and Lead Story because those blocks can become part of saved post content. A publication should be able to change its theme without losing the code that renders that content.
+
+The default theme still uses only core blocks and theme-owned patterns. It does not break or show missing blocks when the optional plugin is inactive. The plugin also carries its own patterns so it remains useful with another compatible block theme.
+
+## Two custom blocks, not a private block library
+
+The plugin deliberately contains two blocks:
+
+- Issue Details gives repeated publication metadata a stable, accessible structure.
+- Lead Story solves a real editorial selection problem that Query Loop cannot express as directly for a single curated article.
+
+Both are dynamic. The saved post stores concise attributes, PHP owns public markup, and the editor uses WordPress packages instead of a parallel front-end application. Lead Story delegates post discovery to the core-data store and its preview to ServerSideRender. This avoids duplicating WordPress query and rendering behavior in JavaScript.
+
+No custom front-end script is justified for either block.
+
+## The demo is disposable
+
+The one-click Playground setup uses fictional publication content and original repository-owned artwork. The seed is idempotent and excluded from both release ZIPs. A normal installation therefore never receives sample users, posts, media, settings, or pages.
 
 ## A publication, not a component gallery
 
@@ -49,7 +70,7 @@ Editors can change the words and destinations while the hierarchy, spacing, and 
 
 ## Performance budget
 
-Fieldnote ships no front-end JavaScript, remote fonts, analytics, image library, CSS framework, or required plugin.
+The Fieldnote theme and companion plugin ship no front-end JavaScript, remote fonts, analytics, image library, CSS framework, or required external service.
 
 System serif, sans, and mono stacks remove font requests and avoid layout shifts. WordPress handles responsive content images. Button interaction CSS is loaded through wp_enqueue_block_style(), allowing core to load or inline it in a block-aware way.
 

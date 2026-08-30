@@ -1,16 +1,25 @@
 {
 	"name": "fieldnote-block-theme",
-	"version": "0.2.0",
+	"version": "1.0.0",
 	"private": true,
 	"description": "Development and validation tooling for the Fieldnote WordPress block theme.",
 	"scripts": {
 		"env:start": "wp-env start --runtime=playground",
 		"env:stop": "wp-env stop",
-		"package": "bash scripts/package-theme.sh",
-		"test": "node scripts/validate-theme.mjs",
+		"package": "npm run package:theme && npm run package:plugin",
+		"package:plugin": "bash scripts/package-plugin.sh",
+		"package:theme": "bash scripts/package-theme.sh",
+		"test": "npm run test:theme && npm run test:plugin",
+		"test:e2e": "playwright test",
+		"test:e2e:ui": "playwright test --ui",
+		"test:plugin": "node scripts/validate-plugin.mjs",
+		"test:theme": "node scripts/validate-theme.mjs",
 		"wp-env": "wp-env"
 	},
 	"devDependencies": {
+		"@axe-core/playwright": "4.13.0",
+		"@playwright/test": "1.62.1",
+		"@wordpress/e2e-test-utils-playwright": "1.46.0",
 		"@wordpress/env": "11.14.0"
 	},
 	"engines": {

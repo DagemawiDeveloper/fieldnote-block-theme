@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.0.0 - 2026-08-30
+
+- Added the optional Fieldnote Editorial Blocks companion plugin without coupling the theme to it.
+- Added a server-rendered Issue Details block with editable metadata and accessible regional labeling.
+- Added a server-rendered Lead Story block with core-data post selection, two layouts, resilient fallbacks, and live editor preview.
+- Added two companion-plugin patterns for editorial mastheads and lead dispatches.
+- Added a one-click WordPress Playground blueprint with nine fictional stories, four original local illustrations, author profiles, categories, supporting pages, and a dedicated block lab.
+- Added Playwright coverage for editor insertion, serialized attributes, front-end rendering, and scoped axe WCAG checks.
+- Added separate reproducible theme and plugin ZIP packages.
+- Added architecture, accessibility, performance, testing, and contribution documentation.
+- Promoted the theme and companion system to the first portfolio release.
+
 ## 0.2.0 - 2026-08-30
 
 - Rebuilt the visual direction as a modern field journal with a coherent editorial front page.

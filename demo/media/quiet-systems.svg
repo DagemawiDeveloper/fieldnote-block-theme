@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title description">
+	<title id="title">Quiet systems</title>
+	<desc id="description">A precise network diagram over a deep ink background.</desc>
+	<defs>
+		<radialGradient id="glow" cx="50%" cy="50%" r="65%">
+			<stop offset="0" stop-color="#3f5d49"/>
+			<stop offset="1" stop-color="#161a1d"/>
+		</radialGradient>
+	</defs>
+	<rect width="1600" height="1000" fill="url(#glow)"/>
+	<g fill="none" stroke="#bfd8db" stroke-opacity=".42" stroke-width="3">
+		<path d="M165 210L470 380 770 180 1050 430 1410 245"/>
+		<path d="M165 210L335 720 710 560 1035 760 1410 245"/>
+		<path d="M470 380L710 560 1050 430"/>
+		<path d="M770 180L710 560 1035 760"/>
+	</g>
+	<g fill="#fbfaf6">
+		<circle cx="165" cy="210" r="19"/>
+		<circle cx="470" cy="380" r="19"/>
+		<circle cx="770" cy="180" r="19"/>
+		<circle cx="1050" cy="430" r="19"/>
+		<circle cx="1410" cy="245" r="19"/>
+		<circle cx="335" cy="720" r="19"/>
+		<circle cx="710" cy="560" r="42"/>
+		<circle cx="1035" cy="760" r="19"/>
+	</g>
+	<circle cx="710" cy="560" r="18" fill="#dba83c"/>
+	<g fill="#b84932">
+		<rect x="120" y="860" width="150" height="18"/>
+		<rect x="290" y="860" width="62" height="18"/>
+	</g>
+</svg>

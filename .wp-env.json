@@ -5,6 +5,9 @@
 	"themes": [
 		"."
 	],
+	"plugins": [
+		"./plugins/fieldnote-editorial-blocks"
+	],
 	"port": 8888,
 	"config": {
 		"SCRIPT_DEBUG": true,
@@ -12,4 +15,3 @@
 		"WP_DEBUG_DISPLAY": true
 	}
 }
-

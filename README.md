@@ -2,11 +2,15 @@
 
 [![Theme checks](https://github.com/DagemawiDeveloper/fieldnote-block-theme/actions/workflows/theme-checks.yml/badge.svg)](https://github.com/DagemawiDeveloper/fieldnote-block-theme/actions/workflows/theme-checks.yml)
 
-Fieldnote is a performance-minded WordPress block theme shaped like a modern field journal. It is a personal engineering project for exploring contemporary editorial systems with native WordPress: no front-end JavaScript, no remote font requests, no framework, and no required plugin.
+Fieldnote is a performance-minded WordPress editorial system shaped like a modern field journal. The core is a native block theme with no front-end JavaScript, remote fonts, framework, tracking, or required plugin. An optional companion plugin adds two focused dynamic Gutenberg blocks while keeping publication behavior portable across themes.
 
 It is not a production client theme and has not been submitted to the WordPress.org theme directory.
 
+[Open the one-click WordPress Playground demo](https://playground.wordpress.net/?blueprint-url=https%3A%2F%2Fraw.githubusercontent.com%2FDagemawiDeveloper%2Ffieldnote-block-theme%2Fmain%2Fblueprint.json)
+
 ![Fieldnote editorial homepage preview](screenshot.png)
+
+![Fieldnote Issue Details and Lead Story blocks](docs/editorial-blocks-preview.png)
 
 ## The editorial system
 
@@ -17,6 +21,8 @@ It is not a production client theme and has not been submitted to the WordPress.
 | Patterns | Hero, lead-story mosaic, archive grid, topic index, manifesto, reader invitation, author profile, editor’s note, and page intro |
 | Global styles | Paper-led default, Ink, and Moss |
 | Section styles | Obsidian, Parchment, Signal, and Editorial Byline |
+| Companion blocks | Server-rendered Issue Details and Lead Story blocks with native editor controls |
+| Demonstration | One-click Playground blueprint, nine original sample stories, four local editorial images, and a block-lab page |
 
 The front page is built as a coherent publication rather than a collection of isolated blocks: an issue-led hero, an asymmetric story mosaic, live category navigation, a high-contrast editorial statement, a deeper archive, and a reader invitation.
 
@@ -36,8 +42,17 @@ The front page is built as a coherent publication rather than a collection of is
 - Responsive query compositions that adapt from editorial mosaics to a linear reading order.
 - System serif, sans, and monospace stacks with fluid local type and spacing tokens.
 - Block-aware Button CSS loaded with **wp_enqueue_block_style()**.
-- Dependency-free structural validation, recursive style validation, PHP linting, and a reproducible installable ZIP.
-- No front-end scripts, remote fonts, trackers, CSS framework, or remotely hosted theme assets.
+- Two metadata-registered dynamic blocks with Inspector Controls, core-data post selection, live server previews, and resilient rendering fallbacks.
+- Dependency-free structural validation, recursive style validation, PHP linting, editor JavaScript checks, Playwright editor tests, scoped axe accessibility checks, and reproducible installable ZIPs.
+- No theme front-end scripts, plugin front-end scripts, remote fonts, trackers, CSS framework, or runtime dependence on remotely hosted theme assets.
+
+## Optional editorial blocks
+
+The companion plugin is deliberately separate from the theme. Posts keep their editorial behavior if a publication changes its visual design, while the theme remains fully usable by itself.
+
+- **Issue Details** provides structured issue context with editable number, title, summary, label, and date.
+- **Lead Story** lets an editor select a published post through WordPress core data, choose split or stacked presentation, move the image, and control category and excerpt visibility.
+- Both blocks render in PHP and use WordPress-provided editor packages. Neither adds JavaScript to the public site.
 
 ## Local setup
 
@@ -48,13 +63,13 @@ npm install
 npm run env:start
 ~~~
 
-Open http://localhost:8888, sign in with the credentials printed by wp-env, and activate **Fieldnote** under **Appearance → Themes** if needed. Stop the environment with:
+Open http://localhost:8888 and sign in with the credentials printed by wp-env. The environment mounts both the theme and the optional companion plugin. Stop it with:
 
 ~~~bash
 npm run env:stop
 ~~~
 
-You can also copy or symlink this repository into **wp-content/themes/fieldnote** in an existing WordPress 7.1 installation.
+For a manual installation, use **dist/fieldnote.zip** for the theme and **dist/fieldnote-editorial-blocks.zip** for the optional plugin.
 
 ## Explore it in the Site Editor
 
@@ -64,6 +79,7 @@ You can also copy or symlink this repository into **wp-content/themes/fieldnote*
 4. Apply Fieldnote Obsidian, Parchment, Signal, or Editorial Byline to a supported container.
 5. Preview responsive block styles at the configured Mobile and Tablet viewports.
 6. Insert any Fieldnote pattern and confirm content-only patterns protect their structure.
+7. Insert Issue Details and Lead Story, change their Inspector Controls, and confirm their server previews update.
 
 ## Checks and packaging
 
@@ -73,23 +89,29 @@ Run the dependency-free validator:
 npm test
 ~~~
 
-Build the installable archive:
+Build both installable archives:
 
 ~~~bash
 npm run package
 ~~~
 
-The ZIP is written to **dist/fieldnote.zip**. GitHub Actions repeats structure, JSON, markup, contrast, screenshot, and packaging checks, then lints every PHP file across PHP 7.4, 8.2, 8.3, and 8.4.
+The command produces **dist/fieldnote.zip** and **dist/fieldnote-editorial-blocks.zip**. GitHub Actions repeats structure, JSON, markup, contrast, JavaScript, screenshot, and packaging checks; lints every PHP file across PHP 7.4, 8.2, 8.3, and 8.4; and runs the critical block-editor and accessibility flows in Chromium.
+
+With the local environment running, execute the browser suite with:
+
+~~~bash
+npm run test:e2e
+~~~
 
 ## Engineering notes
 
-The reasoning behind the design, responsive system, editorial controls, accessibility approach, and performance budget is recorded in [docs/DECISIONS.md](docs/DECISIONS.md). See [docs/TEST-RESULTS.md](docs/TEST-RESULTS.md) for verified results and [docs/TESTING.md](docs/TESTING.md) for the broader manual plan.
+Start with [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for system boundaries and render flows. The reasoning behind the design, responsive system, editorial controls, accessibility approach, and performance budget is recorded in [docs/DECISIONS.md](docs/DECISIONS.md). See [docs/TEST-RESULTS.md](docs/TEST-RESULTS.md) for verified results and [docs/TESTING.md](docs/TESTING.md) for the broader manual plan.
 
 ## Current limits
 
 - Fieldnote covers a focused editorial use case rather than commerce or application UI.
 - Automated checks cannot replace manual Site Editor, keyboard, browser, assistive-technology, RTL, and representative-content testing.
-- The bundled example copy and links are starting points for an editor, not production publication content.
+- The Playground stories and publication are clearly fictional demonstration content, not reporting or production copy.
 
 ## License
 

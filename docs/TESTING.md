@@ -4,6 +4,39 @@ Automated validation catches release consistency, required files, JSON syntax, b
 
 Those checks cannot prove that the editing and reading experiences are usable.
 
+## Fast release checks
+
+Run the dependency-free theme and companion-plugin validators, then build and inspect both archives:
+
+~~~bash
+npm test
+npm run package
+unzip -t dist/fieldnote.zip
+unzip -t dist/fieldnote-editorial-blocks.zip
+~~~
+
+## Editor and browser automation
+
+Start WordPress 7.1 with the theme and companion plugin mounted, then run the critical Playwright flows:
+
+~~~bash
+npm install
+npx playwright install chromium
+npm run env:start
+npm run test:e2e
+npm run env:stop
+~~~
+
+The suite verifies:
+
+- Issue Details and Lead Story can be inserted in the editor.
+- Important block attributes serialize into post content.
+- A specifically selected story renders instead of relying on an accidental global query.
+- Both public block components are visible with expected headings.
+- Scoped axe checks return no WCAG 2.0/2.1 A/AA violations.
+
+The automated browser suite intentionally covers critical paths, not every editor option.
+
 ## Activation and routes
 
 - Install the packaged ZIP on a clean WordPress 7.1 site with WP_DEBUG enabled.
@@ -25,6 +58,10 @@ Those checks cannot prove that the editing and reading experiences are usable.
 - Insert all nine Fieldnote patterns and review their previews.
 - Confirm the four content-only patterns allow copy and link changes but protect composition.
 - Reset user customizations and confirm the theme files remain the source of truth.
+- Insert Issue Details and edit its number, date, title, summary, colors, and spacing.
+- Insert Lead Story, select a specific published post, and review both layouts and image positions.
+- Remove the selected story and confirm the block falls back to the latest published post.
+- Deactivate the companion plugin and confirm the default theme templates remain intact.
 
 ## Content stress cases
 

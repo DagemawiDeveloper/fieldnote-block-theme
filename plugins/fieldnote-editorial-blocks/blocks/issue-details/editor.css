@@ -1,0 +1,8 @@
+.editor-styles-wrapper .fieldnote-issue-details [contenteditable="true"]:focus {
+	outline: 2px dashed currentColor;
+	outline-offset: 0.25rem;
+}
+
+.editor-styles-wrapper .fieldnote-issue-details__number {
+	pointer-events: none;
+}

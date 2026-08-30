@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title description">
+	<title id="title">Civic rhythm</title>
+	<desc id="description">A geometric public square rendered in moss, saffron, and paper.</desc>
+	<rect width="1600" height="1000" fill="#161a1d"/>
+	<rect x="90" y="80" width="1420" height="840" rx="22" fill="#3f5d49"/>
+	<g fill="#fbfaf6">
+		<rect x="190" y="185" width="285" height="565"/>
+		<rect x="535" y="320" width="360" height="430"/>
+		<rect x="955" y="245" width="455" height="505"/>
+	</g>
+	<g fill="#bfd8db">
+		<rect x="240" y="235" width="185" height="70"/>
+		<rect x="585" y="370" width="260" height="70"/>
+		<rect x="1005" y="295" width="355" height="70"/>
+	</g>
+	<g fill="#b84932">
+		<circle cx="332" cy="472" r="74"/>
+		<circle cx="715" cy="570" r="74"/>
+		<circle cx="1182" cy="507" r="74"/>
+	</g>
+	<path d="M130 825h1340" stroke="#dba83c" stroke-width="30"/>
+	<g stroke="#161a1d" stroke-width="6">
+		<path d="M332 546v165"/>
+		<path d="M715 644v67"/>
+		<path d="M1182 581v130"/>
+	</g>
+</svg>

@@ -1,0 +1,57 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "fieldnote/lead-story",
+	"version": "1.0.0",
+	"title": "Lead Story",
+	"category": "fieldnote-editorial",
+	"icon": "cover-image",
+	"description": "Select a published post and present it as an editorial lead story.",
+	"keywords": ["featured", "post", "article"],
+	"textdomain": "fieldnote-editorial-blocks",
+	"attributes": {
+		"postId": {
+			"type": "integer",
+			"default": 0
+		},
+		"eyebrow": {
+			"type": "string",
+			"default": "Featured dispatch"
+		},
+		"layout": {
+			"type": "string",
+			"enum": ["split", "stacked"],
+			"default": "split"
+		},
+		"imagePosition": {
+			"type": "string",
+			"enum": ["left", "right"],
+			"default": "left"
+		},
+		"showCategory": {
+			"type": "boolean",
+			"default": true
+		},
+		"showExcerpt": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"align": ["wide", "full"],
+		"anchor": true,
+		"className": true,
+		"color": {
+			"background": true,
+			"text": true
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"style": "file:./style.css",
+	"render": "file:./render.php"
+}

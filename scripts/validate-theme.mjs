@@ -137,7 +137,7 @@ for (const file of requiredFiles) {
 const stylesheet = read('style.css');
 for (const header of [
 	'Theme Name: Fieldnote',
-	'Version: 0.2.0',
+	'Version: 1.0.0',
 	'Text Domain: fieldnote',
 	'Requires at least: 7.1',
 	'Tested up to: 7.1',
@@ -257,8 +257,8 @@ for (const lockedPattern of ['home-hero.php', 'editorial-callout.php', 'editoria
 }
 
 const packageJson = parseJson('package.json');
-assert(packageJson?.version === '0.2.0', 'package.json: version must match the theme release');
-assert(read('readme.txt').includes('Stable tag: 0.2.0'), 'readme.txt: stable tag must match the theme release');
+assert(packageJson?.version === '1.0.0', 'package.json: version must match the theme release');
+assert(read('readme.txt').includes('Stable tag: 1.0.0'), 'readme.txt: stable tag must match the theme release');
 
 const screenshotPath = path.join(root, 'screenshot.png');
 const screenshot = fs.existsSync(screenshotPath) ? fs.readFileSync(screenshotPath) : null;

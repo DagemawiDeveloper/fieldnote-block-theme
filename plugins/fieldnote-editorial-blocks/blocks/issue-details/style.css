@@ -1,0 +1,79 @@
+.wp-block-fieldnote-issue-details.fieldnote-issue-details {
+	background: linear-gradient(145deg, #161a1d 0%, #26362d 62%, #3f5d49 140%);
+	border: 1px solid color-mix(in srgb, currentColor 16%, transparent);
+	border-radius: 0.55rem;
+	box-sizing: border-box;
+	color: #fff;
+	display: flex;
+	flex-direction: column;
+	isolation: isolate;
+	justify-content: space-between;
+	min-height: 31rem;
+	overflow: hidden;
+	padding: clamp(1.5rem, 4vw, 3.5rem);
+	position: relative;
+}
+
+.fieldnote-issue-details::after {
+	background-image: linear-gradient(90deg, transparent 49%, rgba(255, 255, 255, 0.08) 50%), linear-gradient(transparent 49%, rgba(255, 255, 255, 0.08) 50%);
+	background-size: 3rem 3rem;
+	content: "";
+	inset: 0;
+	mask-image: linear-gradient(to bottom right, #000, transparent 72%);
+	pointer-events: none;
+	position: absolute;
+	z-index: -1;
+}
+
+.fieldnote-issue-details__eyebrow,
+.fieldnote-issue-details__date {
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.09em;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+.fieldnote-issue-details__number {
+	font-family: Iowan Old Style, Baskerville, "Times New Roman", Times, serif;
+	font-size: clamp(6rem, 18vw, 10rem);
+	font-weight: 600;
+	letter-spacing: -0.09em;
+	line-height: 0.72;
+	margin: clamp(3rem, 8vw, 6rem) 0 2.25rem;
+}
+
+.fieldnote-issue-details__title {
+	font-family: Iowan Old Style, Baskerville, "Times New Roman", Times, serif;
+	font-size: clamp(1.75rem, 4vw, 2.6rem);
+	letter-spacing: -0.035em;
+	line-height: 1.02;
+	margin: 0;
+}
+
+.fieldnote-issue-details__summary {
+	color: #e5eae5;
+	font-size: 1rem;
+	line-height: 1.6;
+	margin: 1.25rem 0 2.25rem;
+	max-width: 38rem;
+}
+
+.fieldnote-issue-details__date {
+	border-top: 1px solid rgba(255, 255, 255, 0.24);
+	color: #bfd8db;
+	padding-top: 1rem;
+}
+
+@media (max-width: 37.5rem) {
+	.wp-block-fieldnote-issue-details.fieldnote-issue-details {
+		min-height: 27rem;
+	}
+}
+
+@media (prefers-contrast: more) {
+	.wp-block-fieldnote-issue-details.fieldnote-issue-details {
+		border-color: currentColor;
+	}
+}

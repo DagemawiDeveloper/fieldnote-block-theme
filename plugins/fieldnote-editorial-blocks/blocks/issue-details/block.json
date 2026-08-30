@@ -1,0 +1,56 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "fieldnote/issue-details",
+	"version": "1.0.0",
+	"title": "Issue Details",
+	"category": "fieldnote-editorial",
+	"icon": "book-alt",
+	"description": "Present an issue number, title, date, and editorial summary as a structured masthead.",
+	"keywords": ["magazine", "journal", "edition"],
+	"textdomain": "fieldnote-editorial-blocks",
+	"attributes": {
+		"eyebrow": {
+			"type": "string",
+			"default": "Field journal / 2026"
+		},
+		"issueNumber": {
+			"type": "string",
+			"default": "08"
+		},
+		"title": {
+			"type": "string",
+			"default": "Notes from the edge"
+		},
+		"summary": {
+			"type": "string",
+			"default": "Patient technology, public spaces, and the quiet work behind lasting change."
+		},
+		"dateLabel": {
+			"type": "string",
+			"default": "August 2026"
+		}
+	},
+	"supports": {
+		"align": ["wide"],
+		"anchor": true,
+		"className": true,
+		"color": {
+			"background": true,
+			"gradients": true,
+			"text": true
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor.css",
+	"style": "file:./style.css",
+	"render": "file:./render.php"
+}

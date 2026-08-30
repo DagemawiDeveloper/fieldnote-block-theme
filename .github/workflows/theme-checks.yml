@@ -27,11 +27,18 @@ jobs:
       - name: Run dependency-free theme validation
         run: npm test
 
-      - name: Build installable ZIP
+      - name: Check editor JavaScript syntax
+        run: find plugins tests scripts -type f -name '*.js' -print0 | xargs -0 -n1 node --check
+
+      - name: Build installable ZIPs
         run: npm run package
 
       - name: Inspect packaged files
-        run: unzip -l dist/fieldnote.zip
+        run: |
+          unzip -t dist/fieldnote.zip
+          unzip -t dist/fieldnote-editorial-blocks.zip
+          unzip -l dist/fieldnote.zip
+          unzip -l dist/fieldnote-editorial-blocks.zip
 
   php-lint:
     name: PHP ${{ matrix.php }} syntax
@@ -57,3 +64,42 @@ jobs:
       - name: Lint PHP files
         run: find . -type f -name '*.php' -not -path './node_modules/*' -print0 | xargs -0 -n1 php -l
 
+  e2e:
+    name: WordPress editor and accessibility
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          package-manager-cache: false
+
+      - name: Install test dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Start WordPress Playground
+        run: npm run env:start
+
+      - name: Run editor and accessibility tests
+        run: npm run test:e2e
+
+      - name: Stop WordPress Playground
+        if: always()
+        run: npm run env:stop
+
+      - name: Preserve failure evidence
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: fieldnote-playwright-evidence
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
