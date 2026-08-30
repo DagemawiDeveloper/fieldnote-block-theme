@@ -313,7 +313,7 @@
 		}
 	],
 	"templateParts": [
-		{"area": "general", "name": "announcement", "title": "Announcement bar"},
+		{"area": "uncategorized", "name": "announcement", "title": "Announcement bar"},
 		{"area": "header", "name": "header", "title": "Header"},
 		{"area": "footer", "name": "footer", "title": "Footer"}
 	]

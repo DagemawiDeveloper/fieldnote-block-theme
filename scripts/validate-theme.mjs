@@ -176,7 +176,7 @@ if (theme) {
 		assert(fs.existsSync(path.join(root, 'parts', `${part.name}.html`)), `theme.json: template part '${part.name}' has no matching file`);
 	}
 	const templatePartAreas = Object.fromEntries((theme.templateParts ?? []).map((part) => [part.name, part.area]));
-	assert(templatePartAreas.announcement === 'general', 'theme.json: announcement template part must use the general area');
+	assert(templatePartAreas.announcement === 'uncategorized', 'theme.json: announcement template part must use a supported uncategorized area');
 	assert(templatePartAreas.header === 'header', 'theme.json: header template part must use the header area');
 	assert(templatePartAreas.footer === 'footer', 'theme.json: footer template part must use the footer area');
 
