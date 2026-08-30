@@ -5,7 +5,10 @@
  * Categories: fieldnote, text
  * Description: A restrained page heading with an eyebrow, headline, and supporting introduction.
  * Viewport Width: 1100
+ *
+ * @package Fieldnote
  */
+
 ?>
 <!-- wp:group {"align":"wide","metadata":{"name":"Page introduction"},"templateLock":"contentOnly","style":{"border":{"bottom":{"color":"var:preset|color|line","style":"solid","width":"1px"}},"spacing":{"padding":{"bottom":"var:preset|spacing|60","top":"var:preset|spacing|70"}}},"layout":{"type":"constrained","contentSize":"980px","justifyContent":"left"}} -->
 <div class="wp-block-group alignwide" style="border-bottom-color:var(--wp--preset--color--line);border-bottom-style:solid;border-bottom-width:1px;padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--60)">

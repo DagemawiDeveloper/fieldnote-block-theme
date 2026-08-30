@@ -36,6 +36,25 @@ function fieldnote_setup() {
 add_action( 'after_setup_theme', 'fieldnote_setup' );
 
 /**
+ * Load the shared theme compositions on the public site.
+ *
+ * Block themes do not automatically enqueue the rules stored in style.css.
+ * The same file is registered as an editor style above so both surfaces use
+ * one source for responsive layouts and progressive enhancements.
+ *
+ * @return void
+ */
+function fieldnote_enqueue_styles() {
+	wp_enqueue_style(
+		'fieldnote-style',
+		get_stylesheet_uri(),
+		array(),
+		wp_get_theme()->get( 'Version' )
+	);
+}
+add_action( 'wp_enqueue_scripts', 'fieldnote_enqueue_styles' );
+
+/**
  * Group the bundled patterns into purposeful inserter categories.
  *
  * @return void

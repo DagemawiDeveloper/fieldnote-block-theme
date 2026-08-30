@@ -5,7 +5,10 @@
  * Categories: fieldnote-sections, text
  * Description: A two-column editorial introduction paired with a live category index.
  * Viewport Width: 1280
+ *
+ * @package Fieldnote
  */
+
 ?>
 <!-- wp:group {"tagName":"section","align":"full","backgroundColor":"paper","style":{"spacing":{"margin":{"top":"var:preset|spacing|70"},"padding":{"bottom":"var:preset|spacing|70","top":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
 <section class="wp-block-group alignfull has-paper-background-color has-background" style="margin-top:var(--wp--preset--spacing--70);padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)">

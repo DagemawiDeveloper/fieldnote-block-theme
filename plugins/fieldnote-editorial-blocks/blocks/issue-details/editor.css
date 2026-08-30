@@ -1,5 +1,5 @@
 .editor-styles-wrapper .fieldnote-issue-details [contenteditable="true"]:focus {
-	outline: 2px dashed currentColor;
+	outline: 2px dashed currentcolor;
 	outline-offset: 0.25rem;
 }
 

@@ -4,7 +4,7 @@ Tags: blocks, publishing, editorial, full-site-editing
 Requires at least: 7.1
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,6 +29,11 @@ The editor scripts use WordPress-provided packages. The front end receives no pl
 3. Search for “Fieldnote editorial” in the block inserter.
 
 == Changelog ==
+
+= 1.0.1 =
+* Prevented unavailable Lead Story selections from falling back to the post containing the block.
+* Added cross-browser rendering, presentation-control, and accessibility coverage.
+* Added official Plugin Check and WordPress Coding Standards gates to CI.
 
 = 1.0.0 =
 * Added the Issue Details dynamic block.

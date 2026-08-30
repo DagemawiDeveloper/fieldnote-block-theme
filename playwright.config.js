@@ -10,7 +10,9 @@ export default defineConfig( {
 	workers: 1,
 	retries: process.env.CI ? 1 : 0,
 	forbidOnly: Boolean( process.env.CI ),
-	reporter: process.env.CI ? [ [ 'line' ], [ 'html', { open: 'never' } ] ] : 'list',
+	reporter: process.env.CI
+		? [ [ 'line' ], [ 'html', { open: 'never' } ] ]
+		: 'list',
 	outputDir: 'test-results',
 	use: {
 		baseURL: process.env.WP_BASE_URL || 'http://localhost:8888',
@@ -21,8 +23,20 @@ export default defineConfig( {
 	},
 	projects: [
 		{
-			name: 'chromium',
-			use: { ...devices['Desktop Chrome'] },
+			name: 'desktop-chromium',
+			use: { ...devices[ 'Desktop Chrome' ] },
+		},
+		{
+			name: 'mobile-chromium',
+			use: { ...devices[ 'Pixel 7' ] },
+		},
+		{
+			name: 'desktop-firefox',
+			use: { ...devices[ 'Desktop Firefox' ] },
+		},
+		{
+			name: 'desktop-webkit',
+			use: { ...devices[ 'Desktop Safari' ] },
 		},
 	],
 } );

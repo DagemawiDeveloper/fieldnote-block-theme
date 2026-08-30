@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.0.1 - 2026-08-30
+
+- Replaced root-relative publication links with site-aware URLs and added a validator that prevents regressions.
+- Added five hidden utility patterns so template parts retain native block markup while resolving links through WordPress.
+- Replaced auto-generated Page List navigation with explicit Navigation Link blocks to preserve valid list semantics.
+- Added a contextual link-color token so links retain WCAG AA contrast on announcement and footer surfaces.
+- Explicitly enqueued the shared composition stylesheet on the public site and added a browser regression assertion for it.
+- Prevented Lead Story fallback queries from selecting the post containing the block.
+- Added a locked Node toolchain, WordPress JavaScript/CSS linting, WordPress PHP coding standards, Theme Check, and Plugin Check.
+- Made both ZIP builders deterministic and added repeated-build SHA-256 verification.
+- Expanded Playwright coverage to desktop Chromium, mobile Chromium, Firefox, and WebKit, including full-route axe, responsive overflow, search, 404, portable-link, fallback, and presentation-control cases.
+
 ## 1.0.0 - 2026-08-30
 
 - Added the optional Fieldnote Editorial Blocks companion plugin without coupling the theme to it.

@@ -18,7 +18,7 @@ It is not a production client theme and has not been submitted to the WordPress.
 | --- | --- |
 | Templates | Front page, home, index, single, page, wide page, archive, author, search, and 404 |
 | Template parts | Announcement bar, header, and footer |
-| Patterns | Hero, lead-story mosaic, archive grid, topic index, manifesto, reader invitation, author profile, editor’s note, and page intro |
+| Patterns | Nine editor-facing compositions plus three hidden utility patterns for portable template links |
 | Global styles | Paper-led default, Ink, and Moss |
 | Section styles | Obsidian, Parchment, Signal, and Editorial Byline |
 | Companion blocks | Server-rendered Issue Details and Lead Story blocks with native editor controls |
@@ -43,7 +43,7 @@ The front page is built as a coherent publication rather than a collection of is
 - System serif, sans, and monospace stacks with fluid local type and spacing tokens.
 - Block-aware Button CSS loaded with **wp_enqueue_block_style()**.
 - Two metadata-registered dynamic blocks with Inspector Controls, core-data post selection, live server previews, and resilient rendering fallbacks.
-- Dependency-free structural validation, recursive style validation, PHP linting, editor JavaScript checks, Playwright editor tests, scoped axe accessibility checks, and reproducible installable ZIPs.
+- Structural and semantic validation, official WordPress JavaScript/CSS/PHP standards, Theme Review and Plugin Check, cross-browser Playwright flows, whole-page axe checks, and deterministic installable ZIPs.
 - No theme front-end scripts, plugin front-end scripts, remote fonts, trackers, CSS framework, or runtime dependence on remotely hosted theme assets.
 
 ## Optional editorial blocks
@@ -56,10 +56,10 @@ The companion plugin is deliberately separate from the theme. Posts keep their e
 
 ## Local setup
 
-The quickest option uses the official **@wordpress/env** package with its WordPress Playground runtime:
+The quickest option uses Node 22.19 or newer and the official **@wordpress/env** package with its WordPress Playground runtime:
 
 ~~~bash
-npm install
+npm ci
 npm run env:start
 ~~~
 
@@ -83,10 +83,11 @@ For a manual installation, use **dist/fieldnote.zip** for the theme and **dist/f
 
 ## Checks and packaging
 
-Run the dependency-free validator:
+Run the fast validators and WordPress lint rules:
 
 ~~~bash
 npm test
+npm run lint
 ~~~
 
 Build both installable archives:
@@ -95,7 +96,7 @@ Build both installable archives:
 npm run package
 ~~~
 
-The command produces **dist/fieldnote.zip** and **dist/fieldnote-editorial-blocks.zip**. GitHub Actions repeats structure, JSON, markup, contrast, JavaScript, screenshot, and packaging checks; lints every PHP file across PHP 7.4, 8.2, 8.3, and 8.4; and runs the critical block-editor and accessibility flows in Chromium.
+The command produces **dist/fieldnote.zip** and **dist/fieldnote-editorial-blocks.zip**. Use `npm run package:verify` to build each archive twice and compare its SHA-256 digest. GitHub Actions repeats structure, JSON, markup, contrast, supply-chain, lint, and package checks; lints PHP across 7.4, 8.2, 8.3, and 8.4; runs official WordPress theme and plugin review tools; and exercises the editor and public routes in desktop Chromium, mobile Chromium, Firefox, and WebKit.
 
 With the local environment running, execute the browser suite with:
 

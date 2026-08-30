@@ -3,7 +3,7 @@ Contributors: dagemawideveloper
 Requires at least: 7.1
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,6 +22,13 @@ The theme ships no front-end JavaScript, remote fonts, CSS framework, tracking c
 3. Open Appearance > Editor to adjust templates, template parts, styles, and patterns.
 
 == Changelog ==
+
+= 1.0.1 =
+* Replaced root-relative publication links with site-aware URLs.
+* Added locked Node tooling plus WordPress JavaScript, CSS, and PHP coding-standard checks.
+* Made theme and companion-plugin ZIPs deterministic and verified their SHA-256 hashes across repeated builds.
+* Expanded browser coverage across desktop Chromium, mobile Chromium, Firefox, and WebKit.
+* Added full-route accessibility, responsive-overflow, search, 404, link-portability, and resilient-fallback tests.
 
 = 1.0.0 =
 * Added an optional companion plugin with two dynamic editorial blocks and two patterns.

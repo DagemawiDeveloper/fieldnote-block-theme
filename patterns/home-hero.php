@@ -5,7 +5,10 @@
  * Categories: fieldnote, banner, featured
  * Description: An asymmetric, content-locked editorial hero with issue details and two calls to action.
  * Viewport Width: 1440
+ *
+ * @package Fieldnote
  */
+
 ?>
 <!-- wp:group {"align":"full","className":"fieldnote-hero","textColor":"white","metadata":{"name":"Field journal hero"},"templateLock":"contentOnly","style":{"background":{"gradient":"var:preset|gradient|night-forest"},"spacing":{"padding":{"bottom":"var:preset|spacing|70","top":"var:preset|spacing|70"}},"@mobile":{"spacing":{"padding":{"bottom":"var:preset|spacing|60","top":"var:preset|spacing|60"}}}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignfull fieldnote-hero has-white-color has-text-color" style="background-image:var(--wp--preset--gradient--night-forest);padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)">
@@ -32,7 +35,7 @@
 				<!-- /wp:button -->
 
 				<!-- wp:button {"className":"is-style-outline","textColor":"white"} -->
-				<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-white-color has-text-color wp-element-button" href="/about"><?php echo esc_html_x( 'Why Fieldnote exists', 'Hero secondary action', 'fieldnote' ); ?></a></div>
+				<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-white-color has-text-color wp-element-button" href="<?php echo esc_url( home_url( '/about/' ) ); ?>"><?php echo esc_html_x( 'Why Fieldnote exists', 'Hero secondary action', 'fieldnote' ); ?></a></div>
 				<!-- /wp:button -->
 			</div>
 			<!-- /wp:buttons -->

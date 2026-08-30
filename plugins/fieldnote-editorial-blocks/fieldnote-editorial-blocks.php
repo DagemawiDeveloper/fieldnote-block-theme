@@ -3,7 +3,7 @@
  * Plugin Name:       Fieldnote Editorial Blocks
  * Plugin URI:        https://github.com/DagemawiDeveloper/fieldnote-block-theme
  * Description:       Focused editorial blocks for the Fieldnote publishing system.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires at least: 7.1
  * Requires PHP:      7.4
  * Author:            Dagemawi Alemayehu
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FIELDNOTE_EDITORIAL_BLOCKS_VERSION', '1.0.0' );
+define( 'FIELDNOTE_EDITORIAL_BLOCKS_VERSION', '1.0.1' );
 define( 'FIELDNOTE_EDITORIAL_BLOCKS_PATH', plugin_dir_path( __FILE__ ) );
 
 /**

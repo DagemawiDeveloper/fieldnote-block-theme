@@ -7,7 +7,7 @@ Description: A performance-minded editorial block theme shaped like a modern fie
 Requires at least: 7.1
 Tested up to: 7.1
 Requires PHP: 7.4
-Version: 1.0.0
+Version: 1.0.1
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: fieldnote
@@ -25,7 +25,7 @@ html {
 }
 
 body {
-	text-rendering: optimizeLegibility;
+	text-rendering: optimizelegibility;
 }
 
 :where(.wp-site-blocks) {
@@ -49,13 +49,14 @@ body {
 }
 
 .fieldnote-announcement {
+	--fieldnote-link-color: var(--wp--preset--color--white);
+
 	font-family: var(--wp--preset--font-family--field-mono);
 	font-size: var(--wp--preset--font-size--micro);
 	letter-spacing: 0.035em;
 }
 
 .fieldnote-announcement a {
-	color: inherit;
 	font-weight: 700;
 }
 
@@ -67,6 +68,7 @@ body {
 }
 
 @supports (backdrop-filter: blur(1rem)) {
+
 	.fieldnote-site-header {
 		backdrop-filter: blur(1rem) saturate(125%);
 	}
@@ -107,7 +109,7 @@ body {
 }
 
 .fieldnote-kicker::before {
-	background: currentColor;
+	background: currentcolor;
 	content: "";
 	display: inline-block;
 	height: 1px;
@@ -183,7 +185,7 @@ body {
 	background-size: 3rem 3rem;
 	content: "";
 	inset: 0;
-	mask-image: linear-gradient(to bottom right, black, transparent 72%);
+	mask-image: linear-gradient(to bottom right, #000, transparent 72%);
 	pointer-events: none;
 	position: absolute;
 }
@@ -218,14 +220,18 @@ body {
 	min-width: 0;
 }
 
-.fieldnote-story-mosaic > li:first-child {
+.fieldnote-story-mosaic > :where(li:first-child) {
 	grid-column: span 8;
 	grid-row: span 2;
 }
 
-.fieldnote-story-mosaic > li:nth-child(4),
-.fieldnote-story-mosaic > li:nth-child(5) {
+.fieldnote-story-mosaic > :where(li:nth-child(4)),
+.fieldnote-story-mosaic > :where(li:nth-child(5)) {
 	grid-column: span 6;
+}
+
+.wp-block-post-featured-image img {
+	object-fit: cover;
 }
 
 .fieldnote-story-card {
@@ -242,6 +248,7 @@ body {
 }
 
 @media (hover: hover) {
+
 	.fieldnote-story-card:hover .wp-block-post-featured-image img {
 		transform: scale(1.025);
 	}
@@ -305,7 +312,7 @@ body {
 }
 
 .fieldnote-manifesto::before {
-	color: color-mix(in srgb, currentColor 10%, transparent);
+	color: color-mix(in srgb, currentcolor 10%, transparent);
 	content: "“";
 	font-family: var(--wp--preset--font-family--field-serif);
 	font-size: 18rem;
@@ -373,6 +380,10 @@ body {
 	line-height: 0.8;
 }
 
+.fieldnote-footer {
+	--fieldnote-link-color: var(--wp--preset--color--white);
+}
+
 .fieldnote-footer-grid {
 	display: grid;
 	gap: var(--wp--preset--spacing--50);
@@ -381,10 +392,6 @@ body {
 
 .fieldnote-footer-grid .wp-block-navigation {
 	align-items: flex-start;
-}
-
-.wp-block-post-featured-image img {
-	object-fit: cover;
 }
 
 .wp-block-search__inside-wrapper {
@@ -403,6 +410,7 @@ body {
 }
 
 @media (max-width: 64rem) {
+
 	.fieldnote-story-mosaic > li,
 	.fieldnote-story-mosaic > li:first-child,
 	.fieldnote-story-mosaic > li:nth-child(4),
@@ -421,6 +429,7 @@ body {
 }
 
 @media (max-width: 37.5rem) {
+
 	.fieldnote-site-header {
 		position: relative;
 	}
@@ -458,17 +467,19 @@ body {
 }
 
 @media (prefers-contrast: more) {
+
 	.fieldnote-site-header {
 		background: var(--wp--preset--color--canvas);
 	}
 
 	.fieldnote-story-card,
 	.fieldnote-issue-card {
-		border: 2px solid currentColor;
+		border: 2px solid currentcolor;
 	}
 }
 
 @media (prefers-reduced-motion: reduce) {
+
 	html {
 		scroll-behavior: auto;
 	}
@@ -484,6 +495,7 @@ body {
 }
 
 @media print {
+
 	.fieldnote-announcement,
 	.fieldnote-site-header,
 	.fieldnote-newsletter,

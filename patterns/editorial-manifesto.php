@@ -5,7 +5,10 @@
  * Categories: fieldnote-sections, text, about
  * Description: A high-contrast editorial statement with a protected layout and editable copy.
  * Viewport Width: 1440
+ *
+ * @package Fieldnote
  */
+
 ?>
 <!-- wp:group {"tagName":"section","align":"full","className":"fieldnote-manifesto","backgroundColor":"clay","textColor":"white","metadata":{"name":"Editorial manifesto"},"templateLock":"contentOnly","style":{"spacing":{"padding":{"bottom":"var:preset|spacing|70","top":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
 <section class="wp-block-group alignfull fieldnote-manifesto has-white-color has-clay-background-color has-text-color has-background" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)">

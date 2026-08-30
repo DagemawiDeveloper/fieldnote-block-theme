@@ -4,7 +4,7 @@
 
 .wp-block-button.is-style-outline .wp-block-button__link {
 	background: transparent;
-	border-color: currentColor;
+	border-color: currentcolor;
 	border-width: 1px;
 	color: inherit;
 }
@@ -14,6 +14,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
 	.wp-block-button .wp-block-button__link {
 		transition: none;
 	}

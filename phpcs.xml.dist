@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<ruleset name="Fieldnote">
+	<description>WordPress coding standards for the Fieldnote theme, companion plugin, and demo seed.</description>
+
+	<file>functions.php</file>
+	<file>patterns</file>
+	<file>plugins/fieldnote-editorial-blocks</file>
+	<file>demo/seed.php</file>
+
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/index.asset.php</exclude-pattern>
+
+	<arg name="basepath" value="."/>
+	<arg name="colors"/>
+	<arg value="ps"/>
+	<arg name="extensions" value="php"/>
+
+	<config name="minimum_supported_wp_version" value="7.1"/>
+
+	<rule ref="WordPress-Extra"/>
+	<rule ref="WordPress-Docs"/>
+	<rule ref="Squiz.Commenting.FileComment.Missing">
+		<!-- Playground bootstrap scripts are misclassified even with a valid package docblock. -->
+		<exclude-pattern>demo/seed.php</exclude-pattern>
+	</rule>
+</ruleset>

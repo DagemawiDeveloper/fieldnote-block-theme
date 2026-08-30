@@ -74,11 +74,17 @@ The Fieldnote theme and companion plugin ship no front-end JavaScript, remote fo
 
 System serif, sans, and mono stacks remove font requests and avoid layout shifts. WordPress handles responsive content images. Button interaction CSS is loaded through wp_enqueue_block_style(), allowing core to load or inline it in a block-aware way.
 
+The shared composition stylesheet is explicitly enqueued on the public site and registered as an editor style. This gives responsive editorial layouts and progressive enhancements one versioned source of truth across both surfaces; a Playwright assertion protects the public enqueue from regression.
+
 The richer visual result comes from tokens, native blocks, layout, color, and type—not from a heavier runtime.
 
 ## Accessibility as a system constraint
 
 Every template includes a semantic main landmark. Header and Footer are represented only by their template-part areas, avoiding duplicate landmarks. Core Navigation retains its keyboard and ARIA behavior.
+
+The default header and footer use explicit core Navigation Link blocks rather than an empty Navigation block that auto-inserts Page List. This keeps WordPress-native overlay behavior while ensuring each generated list has only valid list-item children. The links live in hidden PHP patterns so `home_url()` resolves correctly for root, subdirectory, and multisite installations.
+
+The global link color resolves through a contextual `--fieldnote-link-color` token. Light sections use the accessible clay-dark default, while dark announcement and footer surfaces set the token to white. This avoids a cascade-specific override and keeps dynamically generated category and policy links at the same accessible contrast.
 
 The theme also includes:
 

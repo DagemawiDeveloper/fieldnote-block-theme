@@ -1,0 +1,12 @@
+{
+	"extends": "@wordpress/stylelint-config/stylistic",
+	"ignoreFiles": [
+		"dist/**",
+		"node_modules/**",
+		"playwright-report/**",
+		"test-results/**"
+	],
+	"rules": {
+		"selector-class-pattern": "^[a-z][a-z0-9_-]*$"
+	}
+}

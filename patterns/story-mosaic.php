@@ -6,7 +6,10 @@
  * Description: A responsive five-story query composition with one dominant lead story.
  * Block Types: core/query
  * Viewport Width: 1440
+ *
+ * @package Fieldnote
  */
+
 ?>
 <!-- wp:group {"tagName":"section","align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
 <section class="wp-block-group alignwide" style="padding-top:var(--wp--preset--spacing--70)">

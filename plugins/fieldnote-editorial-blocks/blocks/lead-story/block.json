@@ -2,13 +2,14 @@
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "fieldnote/lead-story",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"title": "Lead Story",
 	"category": "fieldnote-editorial",
 	"icon": "cover-image",
 	"description": "Select a published post and present it as an editorial lead story.",
 	"keywords": ["featured", "post", "article"],
 	"textdomain": "fieldnote-editorial-blocks",
+	"usesContext": ["postId", "postType"],
 	"attributes": {
 		"postId": {
 			"type": "integer",

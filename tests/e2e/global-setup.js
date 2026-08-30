@@ -4,8 +4,9 @@ import { request } from '@playwright/test';
 import { RequestUtils } from '@wordpress/e2e-test-utils-playwright';
 
 export default async function globalSetup( config ) {
-	const { baseURL, storageState } = config.projects[0].use;
-	const storageStatePath = typeof storageState === 'string' ? storageState : undefined;
+	const { baseURL, storageState } = config.projects[ 0 ].use;
+	const storageStatePath =
+		typeof storageState === 'string' ? storageState : undefined;
 
 	if ( storageStatePath ) {
 		await fs.mkdir( path.dirname( storageStatePath ), { recursive: true } );

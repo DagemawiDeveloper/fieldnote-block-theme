@@ -1,4 +1,13 @@
-( function ( blocks, blockEditor, components, coreData, data, element, i18n, ServerSideRender ) {
+( function(
+	blocks,
+	blockEditor,
+	components,
+	coreData,
+	data,
+	element,
+	i18n,
+	ServerSideRender,
+) {
 	'use strict';
 
 	const el = element.createElement;
@@ -15,7 +24,10 @@
 
 	blocks.registerBlockType( 'fieldnote/lead-story', {
 		title: __( 'Lead Story', 'fieldnote-editorial-blocks' ),
-		description: __( 'Select a published post and present it as an editorial lead.', 'fieldnote-editorial-blocks' ),
+		description: __(
+			'Select a published post and present it as an editorial lead.',
+			'fieldnote-editorial-blocks',
+		),
 		icon: 'cover-image',
 		category: 'fieldnote-editorial',
 		attributes: {
@@ -26,26 +38,40 @@
 			showCategory: { type: 'boolean', default: true },
 			showExcerpt: { type: 'boolean', default: true },
 		},
-		edit( { attributes, setAttributes } ) {
+		edit: function Edit( { attributes, setAttributes } ) {
 			const posts = useSelect(
 				( select ) =>
-					select( coreData.store ).getEntityRecords( 'postType', 'post', {
-						per_page: 20,
-						status: 'publish',
-						order: 'desc',
-						orderby: 'date',
-						_fields: 'id,title',
-					} ),
-				[]
+					select( coreData.store ).getEntityRecords(
+						'postType',
+						'post',
+						{
+							per_page: 20,
+							status: 'publish',
+							order: 'desc',
+							orderby: 'date',
+							_fields: 'id,title',
+						},
+					),
+				[],
 			);
 			const options = [
-				{ label: __( 'Latest published post', 'fieldnote-editorial-blocks' ), value: 0 },
+				{
+					label: __(
+						'Latest published post',
+						'fieldnote-editorial-blocks',
+					),
+					value: 0,
+				},
 				...( posts || [] ).map( ( post ) => ( {
-					label: plainTitle( post.title.rendered ) || __( '(Untitled)', 'fieldnote-editorial-blocks' ),
+					label:
+						plainTitle( post.title.rendered ) ||
+						__( '(Untitled)', 'fieldnote-editorial-blocks' ),
 					value: post.id,
 				} ) ),
 			];
-			const blockProps = useBlockProps( { className: 'fieldnote-lead-story-editor' } );
+			const blockProps = useBlockProps( {
+				className: 'fieldnote-lead-story-editor',
+			} );
 
 			return el(
 				element.Fragment,
@@ -56,56 +82,109 @@
 					el(
 						PanelBody,
 						{
-							title: __( 'Story selection', 'fieldnote-editorial-blocks' ),
+							title: __(
+								'Story selection',
+								'fieldnote-editorial-blocks',
+							),
 							initialOpen: true,
 						},
 						el( SelectControl, {
-							label: __( 'Published post', 'fieldnote-editorial-blocks' ),
+							label: __(
+								'Published post',
+								'fieldnote-editorial-blocks',
+							),
 							value: attributes.postId,
 							options,
-							onChange: ( postId ) => setAttributes( { postId: Number.parseInt( postId, 10 ) || 0 } ),
+							onChange: ( postId ) =>
+								setAttributes( {
+									postId: Number.parseInt( postId, 10 ) || 0,
+								} ),
 						} ),
 						el( TextControl, {
-							label: __( 'Eyebrow', 'fieldnote-editorial-blocks' ),
+							label: __(
+								'Eyebrow',
+								'fieldnote-editorial-blocks',
+							),
 							value: attributes.eyebrow,
-							onChange: ( eyebrow ) => setAttributes( { eyebrow } ),
-						} )
+							onChange: ( eyebrow ) =>
+								setAttributes( { eyebrow } ),
+						} ),
 					),
 					el(
 						PanelBody,
 						{
-							title: __( 'Presentation', 'fieldnote-editorial-blocks' ),
+							title: __(
+								'Presentation',
+								'fieldnote-editorial-blocks',
+							),
 							initialOpen: false,
 						},
 						el( SelectControl, {
 							label: __( 'Layout', 'fieldnote-editorial-blocks' ),
 							value: attributes.layout,
 							options: [
-								{ label: __( 'Split', 'fieldnote-editorial-blocks' ), value: 'split' },
-								{ label: __( 'Stacked', 'fieldnote-editorial-blocks' ), value: 'stacked' },
+								{
+									label: __(
+										'Split',
+										'fieldnote-editorial-blocks',
+									),
+									value: 'split',
+								},
+								{
+									label: __(
+										'Stacked',
+										'fieldnote-editorial-blocks',
+									),
+									value: 'stacked',
+								},
 							],
 							onChange: ( layout ) => setAttributes( { layout } ),
 						} ),
-						attributes.layout === 'split' && el( SelectControl, {
-							label: __( 'Image position', 'fieldnote-editorial-blocks' ),
-							value: attributes.imagePosition,
-							options: [
-								{ label: __( 'Left', 'fieldnote-editorial-blocks' ), value: 'left' },
-								{ label: __( 'Right', 'fieldnote-editorial-blocks' ), value: 'right' },
-							],
-							onChange: ( imagePosition ) => setAttributes( { imagePosition } ),
-						} ),
+						attributes.layout === 'split' &&
+							el( SelectControl, {
+								label: __(
+									'Image position',
+									'fieldnote-editorial-blocks',
+								),
+								value: attributes.imagePosition,
+								options: [
+									{
+										label: __(
+											'Left',
+											'fieldnote-editorial-blocks',
+										),
+										value: 'left',
+									},
+									{
+										label: __(
+											'Right',
+											'fieldnote-editorial-blocks',
+										),
+										value: 'right',
+									},
+								],
+								onChange: ( imagePosition ) =>
+									setAttributes( { imagePosition } ),
+							} ),
 						el( ToggleControl, {
-							label: __( 'Show category', 'fieldnote-editorial-blocks' ),
+							label: __(
+								'Show category',
+								'fieldnote-editorial-blocks',
+							),
 							checked: attributes.showCategory,
-							onChange: ( showCategory ) => setAttributes( { showCategory } ),
+							onChange: ( showCategory ) =>
+								setAttributes( { showCategory } ),
 						} ),
 						el( ToggleControl, {
-							label: __( 'Show excerpt', 'fieldnote-editorial-blocks' ),
+							label: __(
+								'Show excerpt',
+								'fieldnote-editorial-blocks',
+							),
 							checked: attributes.showExcerpt,
-							onChange: ( showExcerpt ) => setAttributes( { showExcerpt } ),
-						} )
-					)
+							onChange: ( showExcerpt ) =>
+								setAttributes( { showExcerpt } ),
+						} ),
+					),
 				),
 				el(
 					'div',
@@ -113,16 +192,24 @@
 					el( ServerSideRender, {
 						block: 'fieldnote/lead-story',
 						attributes,
-						EmptyResponsePlaceholder: () => el( 'p', null, __( 'Publish a post to preview this block.', 'fieldnote-editorial-blocks' ) ),
-					} )
-				)
+						EmptyResponsePlaceholder: () =>
+							el(
+								'p',
+								null,
+								__(
+									'Publish a post to preview this block.',
+									'fieldnote-editorial-blocks',
+								),
+							),
+					} ),
+				),
 			);
 		},
 		save() {
 			return null;
 		},
 	} );
-} )(
+}(
 	window.wp.blocks,
 	window.wp.blockEditor,
 	window.wp.components,
@@ -130,5 +217,5 @@
 	window.wp.data,
 	window.wp.element,
 	window.wp.i18n,
-	window.wp.serverSideRender
-);
+	window.wp.serverSideRender,
+) );

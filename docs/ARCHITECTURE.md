@@ -29,7 +29,7 @@ WordPress reads `theme.json`, resolves the requested block template, and compose
 1. The editor uses the WordPress core-data store to list recent published posts.
 2. ServerSideRender provides a faithful preview rather than maintaining duplicate preview markup.
 3. The saved attributes contain a post ID and presentation choices, not copied post content.
-4. PHP validates that the selected object is a published post and falls back to the latest published post when it is missing or unavailable.
+4. PHP validates that the selected object is a published post and falls back to the latest other published post when it is missing or unavailable. The host post is excluded so a Lead Story cannot recursively feature itself.
 5. Core APIs supply the title, permalink, image, category, author, date, and excerpt. The public page receives CSS and semantic HTML, but no plugin JavaScript.
 
 ## Portability boundary
@@ -40,7 +40,7 @@ Likewise, neither installable ZIP contains the Playground seed. Demo content can
 
 ## Failure behavior
 
-- An unavailable selected story falls back to the latest published post.
+- An unavailable selected story falls back to the latest eligible published post, excluding the host post.
 - A publication with no posts receives no Lead Story output instead of broken placeholder markup.
 - A post without a featured image receives a local CSS placeholder with a readable editorial treatment.
 - Failure to download demo artwork does not stop Playground from creating the sample posts.
@@ -48,4 +48,4 @@ Likewise, neither installable ZIP contains the Playground seed. Demo content can
 
 ## Quality gates
 
-The fast suite validates file structure, JSON, serialized block markup, version consistency, contrast pairs, responsive states, block metadata, asset declarations, packaging boundaries, and editor-script syntax. GitHub Actions adds PHP linting across the supported matrix and Playwright checks for block insertion, saved attributes, server-rendered output, and WCAG-focused axe results.
+The fast suite validates file structure, JSON, serialized block markup, version consistency, portable internal links, contrast pairs, responsive states, block metadata, asset declarations, packaging boundaries, and editor-script syntax. Official WordPress JavaScript, CSS, and PHP standards run locally and in CI. GitHub Actions adds PHP linting across the supported matrix, WordPress Theme Review and Plugin Check, deterministic package verification, and Playwright checks for editor controls, saved attributes, server-rendered output, route behavior, narrow-screen overflow, and whole-page WCAG-focused axe results.
