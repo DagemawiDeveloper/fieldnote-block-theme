@@ -12,7 +12,10 @@ export default async function globalSetup( config ) {
 	}
 
 	const requestContext = await request.newContext( { baseURL } );
-	const requestUtils = new RequestUtils( requestContext, { storageStatePath } );
+	const requestUtils = new RequestUtils( requestContext, {
+		baseURL,
+		storageStatePath,
+	} );
 
 	await requestUtils.setupRest();
 	await requestUtils.activateTheme( 'fieldnote-block-theme' );
