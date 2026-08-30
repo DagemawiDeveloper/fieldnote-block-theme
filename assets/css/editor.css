@@ -1,0 +1,12 @@
+/* Keep small editor-only affordances aligned with the front end. */
+
+.editor-styles-wrapper :where(a, button, input, select, textarea):focus-visible {
+	outline: 3px solid var(--wp--preset--color--focus);
+	outline-offset: 3px;
+}
+
+.editor-styles-wrapper .fieldnote-kicker {
+	letter-spacing: 0.09em;
+	text-transform: uppercase;
+}
+

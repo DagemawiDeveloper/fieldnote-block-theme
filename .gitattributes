@@ -1,0 +1,13 @@
+* text=auto eol=lf
+
+/.github export-ignore
+/.gitignore export-ignore
+/.editorconfig export-ignore
+/.gitattributes export-ignore
+/.wp-env.json export-ignore
+/docs export-ignore
+/scripts export-ignore
+/dist export-ignore
+/package.json export-ignore
+/package-lock.json export-ignore
+

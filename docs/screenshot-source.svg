@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Fieldnote block theme preview</title>
+  <desc id="desc">An editorial homepage with a dark hero, a terracotta call to action, and a three-column story grid.</desc>
+  <rect width="1200" height="900" fill="#f7f4ec"/>
+  <rect x="70" y="48" width="1060" height="68" rx="4" fill="#ffffff" stroke="#e2ddd2"/>
+  <circle cx="111" cy="82" r="18" fill="#9c3e2e"/>
+  <text x="143" y="91" fill="#1e2930" font-family="Georgia, serif" font-size="28" font-weight="700">Fieldnote</text>
+  <text x="854" y="87" fill="#53616a" font-family="Arial, sans-serif" font-size="16">Stories</text>
+  <text x="935" y="87" fill="#53616a" font-family="Arial, sans-serif" font-size="16">Topics</text>
+  <text x="1012" y="87" fill="#53616a" font-family="Arial, sans-serif" font-size="16">About</text>
+
+  <rect x="70" y="142" width="1060" height="324" rx="4" fill="#1e2930"/>
+  <text x="128" y="205" fill="#e2ddd2" font-family="Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="2">FIELD NOTES FOR CURIOUS PEOPLE</text>
+  <text x="128" y="282" fill="#ffffff" font-family="Georgia, serif" font-size="56" font-weight="700">Ideas deserve room</text>
+  <text x="128" y="347" fill="#ffffff" font-family="Georgia, serif" font-size="56" font-weight="700">to breathe.</text>
+  <text x="128" y="398" fill="#d5d0c7" font-family="Arial, sans-serif" font-size="20">Native blocks, clear editorial choices, and quiet performance.</text>
+  <rect x="128" y="422" width="150" height="44" rx="4" fill="#9c3e2e"/>
+  <text x="157" y="450" fill="#ffffff" font-family="Arial, sans-serif" font-size="16" font-weight="700">Browse stories</text>
+
+  <text x="70" y="542" fill="#1e2930" font-family="Georgia, serif" font-size="36" font-weight="700">Latest stories</text>
+  <text x="931" y="538" fill="#53616a" font-family="Arial, sans-serif" font-size="17">Reporting, essays, and notes.</text>
+
+  <g transform="translate(70 580)">
+    <rect width="330" height="250" rx="4" fill="#ffffff" stroke="#e2ddd2"/>
+    <rect width="330" height="112" rx="4" fill="#d6c1a8"/>
+    <text x="22" y="144" fill="#9c3e2e" font-family="Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.5">FIELDWORK</text>
+    <text x="22" y="180" fill="#1e2930" font-family="Georgia, serif" font-size="24" font-weight="700">A better way to keep</text>
+    <text x="22" y="210" fill="#1e2930" font-family="Georgia, serif" font-size="24" font-weight="700">useful notes</text>
+    <text x="22" y="235" fill="#53616a" font-family="Arial, sans-serif" font-size="13">August 28, 2026</text>
+  </g>
+
+  <g transform="translate(435 580)">
+    <rect width="330" height="250" rx="4" fill="#ffffff" stroke="#e2ddd2"/>
+    <rect width="330" height="112" rx="4" fill="#a9bec0"/>
+    <text x="22" y="144" fill="#9c3e2e" font-family="Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.5">DESIGN</text>
+    <text x="22" y="180" fill="#1e2930" font-family="Georgia, serif" font-size="24" font-weight="700">Editorial systems that</text>
+    <text x="22" y="210" fill="#1e2930" font-family="Georgia, serif" font-size="24" font-weight="700">get out of the way</text>
+    <text x="22" y="235" fill="#53616a" font-family="Arial, sans-serif" font-size="13">August 24, 2026</text>
+  </g>
+
+  <g transform="translate(800 580)">
+    <rect width="330" height="250" rx="4" fill="#ffffff" stroke="#e2ddd2"/>
+    <rect width="330" height="112" rx="4" fill="#c9b3aa"/>
+    <text x="22" y="144" fill="#9c3e2e" font-family="Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="1.5">PRACTICE</text>
+    <text x="22" y="180" fill="#1e2930" font-family="Georgia, serif" font-size="24" font-weight="700">Small decisions, strong</text>
+    <text x="22" y="210" fill="#1e2930" font-family="Georgia, serif" font-size="24" font-weight="700">publishing workflows</text>
+    <text x="22" y="235" fill="#53616a" font-family="Arial, sans-serif" font-size="13">August 19, 2026</text>
+  </g>
+</svg>
+

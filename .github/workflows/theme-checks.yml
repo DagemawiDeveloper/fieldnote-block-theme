@@ -1,0 +1,59 @@
+name: Theme checks
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Structure, JSON, and package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          package-manager-cache: false
+
+      - name: Run dependency-free theme validation
+        run: npm test
+
+      - name: Build installable ZIP
+        run: npm run package
+
+      - name: Inspect packaged files
+        run: unzip -l dist/fieldnote.zip
+
+  php-lint:
+    name: PHP ${{ matrix.php }} syntax
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php:
+          - "7.4"
+          - "8.2"
+          - "8.3"
+          - "8.4"
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+
+      - name: Lint PHP files
+        run: find . -type f -name '*.php' -not -path './node_modules/*' -print0 | xargs -0 -n1 php -l
+

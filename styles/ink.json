@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 2,
+	"title": "Ink",
+	"styles": {
+		"color": {
+			"background": "#172128",
+			"text": "#f5f1e8"
+		},
+		"elements": {
+			"button": {
+				"color": {
+					"background": "#e5a18f",
+					"text": "#172128"
+				}
+			},
+			"caption": {
+				"color": {
+					"text": "#c7c1b8"
+				}
+			},
+			"link": {
+				"color": {
+					"text": "#f0b7a7"
+				}
+			}
+		},
+		"blocks": {
+			"core/post-date": {
+				"color": {
+					"text": "#c7c1b8"
+				}
+			},
+			"core/post-excerpt": {
+				"color": {
+					"text": "#d5d0c7"
+				}
+			}
+		}
+	}
+}
+

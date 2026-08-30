@@ -1,0 +1,65 @@
+/*
+Theme Name: Fieldnote
+Theme URI: https://github.com/DagemawiDeveloper/fieldnote-block-theme
+Author: Dagemawi Alemayehu
+Author URI: https://github.com/DagemawiDeveloper
+Description: A restrained, accessibility-minded block theme for editorial teams and independent publications.
+Requires at least: 6.6
+Tested up to: 7.1
+Requires PHP: 7.4
+Version: 0.1.0
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: fieldnote
+Tags: blog, news, block-patterns, full-site-editing, wide-blocks
+*/
+
+/*
+ * Most visual decisions live in theme.json so they stay in sync between the
+ * editor and the front end. This file is limited to behavior that is clearer
+ * or more reliable in CSS.
+ */
+
+:where(.wp-site-blocks) {
+	min-height: 100vh;
+}
+
+:where(a, button, input, select, textarea):focus-visible {
+	outline: 3px solid var(--wp--preset--color--focus);
+	outline-offset: 3px;
+}
+
+:where(.wp-block-post-title a, .wp-block-query-pagination a) {
+	text-decoration-thickness: 0.08em;
+	text-underline-offset: 0.14em;
+}
+
+.wp-block-post-featured-image img {
+	object-fit: cover;
+}
+
+.fieldnote-card {
+	height: 100%;
+}
+
+.fieldnote-kicker {
+	letter-spacing: 0.09em;
+	text-transform: uppercase;
+}
+
+.fieldnote-meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.45rem 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		scroll-behavior: auto !important;
+		transition-duration: 0.01ms !important;
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+	}
+}
