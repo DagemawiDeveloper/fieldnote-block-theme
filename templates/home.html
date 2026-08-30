@@ -2,9 +2,27 @@
 
 <!-- wp:group {"tagName":"main","align":"full","layout":{"type":"default"}} -->
 <main class="wp-block-group alignfull">
-	<!-- wp:pattern {"slug":"fieldnote/home-hero"} /-->
+	<!-- wp:group {"align":"full","backgroundColor":"paper","style":{"spacing":{"padding":{"bottom":"var:preset|spacing|60","top":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
+	<div class="wp-block-group alignfull has-paper-background-color has-background" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--60)">
+		<!-- wp:group {"align":"wide","layout":{"type":"constrained","contentSize":"980px","justifyContent":"left"}} -->
+		<div class="wp-block-group alignwide">
+			<!-- wp:paragraph {"className":"fieldnote-kicker","textColor":"clay-dark"} -->
+			<p class="fieldnote-kicker has-clay-dark-color has-text-color">The journal</p>
+			<!-- /wp:paragraph -->
+			<!-- wp:heading {"level":1,"fontSize":"display"} -->
+			<h1 class="wp-block-heading has-display-font-size">Reporting for people who still want the full story.</h1>
+			<!-- /wp:heading -->
+			<!-- wp:paragraph {"textColor":"graphite","fontSize":"lead"} -->
+			<p class="has-graphite-color has-text-color has-lead-font-size">Browse every dispatch, essay, interview, and working note from the Fieldnote archive.</p>
+			<!-- /wp:paragraph -->
+		</div>
+		<!-- /wp:group -->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:pattern {"slug":"fieldnote/story-mosaic"} /-->
 	<!-- wp:pattern {"slug":"fieldnote/featured-stories"} /-->
-	<!-- wp:pattern {"slug":"fieldnote/editorial-callout"} /-->
+	<!-- wp:pattern {"slug":"fieldnote/newsletter"} /-->
 </main>
 <!-- /wp:group -->
 

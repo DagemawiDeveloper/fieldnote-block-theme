@@ -24,17 +24,23 @@ function read(file) {
 	return fs.readFileSync(path.join(root, file), 'utf8');
 }
 
-function listFiles(directory, extension) {
+function listFiles(directory, extension, recursive = false) {
 	const absolute = path.join(root, directory);
 	if (!fs.existsSync(absolute)) {
 		return [];
 	}
 
-	return fs
-		.readdirSync(absolute, { withFileTypes: true })
-		.filter((entry) => entry.isFile() && entry.name.endsWith(extension))
-		.map((entry) => path.join(absolute, entry.name))
-		.sort();
+	const found = [];
+	for (const entry of fs.readdirSync(absolute, { withFileTypes: true })) {
+		const item = path.join(absolute, entry.name);
+		if (entry.isDirectory() && recursive) {
+			found.push(...listFiles(relative(item), extension, true));
+		} else if (entry.isFile() && entry.name.endsWith(extension)) {
+			found.push(item);
+		}
+	}
+
+	return found.sort();
 }
 
 function parseJson(file) {
@@ -64,7 +70,19 @@ function validateBlockMarkup(file) {
 			if (open !== name) {
 				fail(`${relative(file)}: closing block ${name} does not match ${open ?? 'nothing'}`);
 			}
-		} else if (!selfClosing) {
+			continue;
+		}
+
+		const attributes = tail.trim().replace(/\/\s*$/, '').trim();
+		if (attributes.startsWith('{')) {
+			try {
+				JSON.parse(attributes);
+			} catch (error) {
+				fail(`${relative(file)}: ${name} has invalid JSON attributes (${error.message})`);
+			}
+		}
+
+		if (!selfClosing) {
 			stack.push(name);
 		}
 	}
@@ -73,12 +91,41 @@ function validateBlockMarkup(file) {
 	assert(stack.length === 0, `${relative(file)}: unclosed blocks: ${stack.join(', ')}`);
 }
 
+function findKeys(value, wanted, found = []) {
+	if (!value || typeof value !== 'object') {
+		return found;
+	}
+	for (const [key, child] of Object.entries(value)) {
+		if (wanted.has(key)) {
+			found.push(key);
+		}
+		findKeys(child, wanted, found);
+	}
+	return found;
+}
+
+function contrast(hexA, hexB) {
+	const luminance = (hex) => {
+		const rgb = hex
+			.replace('#', '')
+			.match(/.{2}/g)
+			.map((channel) => Number.parseInt(channel, 16) / 255)
+			.map((channel) => (channel <= 0.04045 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4));
+		return 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
+	};
+	const light = Math.max(luminance(hexA), luminance(hexB));
+	const dark = Math.min(luminance(hexA), luminance(hexB));
+	return (light + 0.05) / (dark + 0.05);
+}
+
 const requiredFiles = [
 	'style.css',
 	'theme.json',
 	'functions.php',
 	'screenshot.png',
+	'templates/front-page.html',
 	'templates/index.html',
+	'parts/announcement.html',
 	'parts/header.html',
 	'parts/footer.html',
 ];
@@ -90,31 +137,46 @@ for (const file of requiredFiles) {
 const stylesheet = read('style.css');
 for (const header of [
 	'Theme Name: Fieldnote',
-	'Version: 0.1.0',
+	'Version: 0.2.0',
 	'Text Domain: fieldnote',
-	'Requires at least: 6.6',
+	'Requires at least: 7.1',
 	'Tested up to: 7.1',
+	'Requires PHP: 7.4',
 ]) {
 	assert(stylesheet.includes(header), `style.css: missing header '${header}'`);
 }
 assert(stylesheet.includes(':focus-visible'), 'style.css: focus-visible treatment is missing');
 assert(stylesheet.includes('prefers-reduced-motion'), 'style.css: reduced-motion treatment is missing');
-assert(!/@import\s/i.test(stylesheet), 'style.css: remote or render-blocking @import is not allowed');
+assert(stylesheet.includes('prefers-contrast'), 'style.css: increased-contrast treatment is missing');
+assert(stylesheet.includes('@media print'), 'style.css: print treatment is missing');
+assert(!/@import\s/i.test(stylesheet), 'style.css: render-blocking @import is not allowed');
 assert(!/url\(\s*["']?https?:/i.test(stylesheet), 'style.css: remote assets are not allowed');
 
 const theme = parseJson('theme.json');
 if (theme) {
 	assert(theme.$schema === 'https://schemas.wp.org/trunk/theme.json', 'theme.json: use the official schema URL');
-	assert(theme.version === 2, 'theme.json: schema version must be 2');
+	assert(theme.version === 3, 'theme.json: schema version must be 3');
 	assert(theme.settings?.appearanceTools === true, 'theme.json: appearanceTools should be enabled');
 	assert(theme.settings?.useRootPaddingAwareAlignments === true, 'theme.json: root-padding-aware alignments should be enabled');
+	assert(theme.settings?.viewport?.mobile === '37.5rem', 'theme.json: configured mobile viewport is missing');
+	assert(theme.settings?.viewport?.tablet === '64rem', 'theme.json: configured tablet viewport is missing');
+
+	const states = findKeys(theme.styles, new Set(['@mobile', '@tablet', ':hover', ':focus-visible', ':active', '-current']));
+	for (const state of ['@mobile', '@tablet', ':hover', ':focus-visible', ':active', '-current']) {
+		assert(states.includes(state), `theme.json: WordPress 7.1 state '${state}' is not demonstrated`);
+	}
+	assert(theme.styles?.blocks?.['core/button']?.[':hover'], 'theme.json: Button hover state is missing');
+	assert(theme.styles?.blocks?.['core/navigation-link']?.['-current'], 'theme.json: current Navigation Link state is missing');
+
+	const palette = Object.fromEntries((theme.settings?.color?.palette ?? []).map((item) => [item.slug, item.color]));
+	assert(contrast(palette.ink, palette.canvas) >= 7, 'theme.json: default ink/canvas contrast should exceed 7:1');
+	assert(contrast(palette.white, palette.clay) >= 4.5, 'theme.json: white/clay contrast should meet WCAG AA for normal text');
 
 	for (const part of theme.templateParts ?? []) {
 		assert(fs.existsSync(path.join(root, 'parts', `${part.name}.html`)), `theme.json: template part '${part.name}' has no matching file`);
 	}
-	const templatePartAreas = Object.fromEntries(
-		(theme.templateParts ?? []).map((part) => [part.name, part.area]),
-	);
+	const templatePartAreas = Object.fromEntries((theme.templateParts ?? []).map((part) => [part.name, part.area]));
+	assert(templatePartAreas.announcement === 'general', 'theme.json: announcement template part must use the general area');
 	assert(templatePartAreas.header === 'header', 'theme.json: header template part must use the header area');
 	assert(templatePartAreas.footer === 'footer', 'theme.json: footer template part must use the footer area');
 
@@ -123,15 +185,27 @@ if (theme) {
 	}
 }
 
-for (const file of listFiles('styles', '.json')) {
+const styleFiles = listFiles('styles', '.json', true);
+let globalVariationCount = 0;
+let scopedVariationCount = 0;
+for (const file of styleFiles) {
 	try {
 		const variation = JSON.parse(fs.readFileSync(file, 'utf8'));
-		assert(variation.version === 2, `${relative(file)}: schema version must be 2`);
+		assert(variation.version === 3, `${relative(file)}: schema version must be 3`);
 		assert(typeof variation.title === 'string' && variation.title.length > 0, `${relative(file)}: title is required`);
+		if (variation.blockTypes) {
+			scopedVariationCount += 1;
+			assert(typeof variation.slug === 'string' && variation.slug.startsWith('fieldnote-'), `${relative(file)}: scoped variation needs a namespaced slug`);
+			assert(Array.isArray(variation.blockTypes) && variation.blockTypes.length > 0, `${relative(file)}: blockTypes are required`);
+		} else {
+			globalVariationCount += 1;
+		}
 	} catch (error) {
 		fail(`${relative(file)}: invalid JSON (${error.message})`);
 	}
 }
+assert(globalVariationCount >= 2, 'styles: expected at least two global style variations');
+assert(scopedVariationCount >= 4, 'styles: expected at least four section or block style variations');
 
 const templateFiles = listFiles('templates', '.html');
 for (const file of templateFiles) {
@@ -140,16 +214,15 @@ for (const file of templateFiles) {
 	assert(source.includes('"slug":"header"'), `${relative(file)}: header template part is missing`);
 	assert(source.includes('"slug":"footer"'), `${relative(file)}: footer template part is missing`);
 	assert(source.includes('"tagName":"main"'), `${relative(file)}: semantic main landmark is missing`);
-	assert(
-		!(/wp:template-part[^>]*"tagName":"(?:header|footer)"/.test(source)),
-		`${relative(file)}: template-part wrappers must not duplicate header or footer landmarks`,
-	);
+	assert(!(/wp:template-part[^>]*"tagName":"(?:header|footer)"/.test(source)), `${relative(file)}: template-part wrappers must not duplicate header or footer landmarks`);
 }
+assert(templateFiles.length >= 10, 'templates: expected at least ten template files');
 
 const partFiles = listFiles('parts', '.html');
 for (const file of partFiles) {
 	validateBlockMarkup(file);
 }
+assert(read('parts/header.html').includes('"slug":"announcement"'), 'parts/header.html: announcement template part is missing');
 assert(read('parts/header.html').includes('wp:navigation'), 'parts/header.html: Navigation block is missing');
 assert(!read('parts/header.html').includes('"tagName":"header"'), 'parts/header.html: inner group must not duplicate the template-part header landmark');
 assert(!read('parts/footer.html').includes('"tagName":"footer"'), 'parts/footer.html: inner group must not duplicate the template-part footer landmark');
@@ -178,19 +251,29 @@ for (const file of patternFiles) {
 	validateBlockMarkup(file);
 }
 
-assert(patternFiles.length >= 4, 'patterns: expected at least four bundled editorial patterns');
-assert(read('patterns/home-hero.php').includes('"templateLock":"contentOnly"'), 'patterns/home-hero.php: content-only editorial lock is missing');
-assert(read('patterns/editorial-callout.php').includes('"templateLock":"contentOnly"'), 'patterns/editorial-callout.php: content-only editorial lock is missing');
+assert(patternFiles.length >= 9, 'patterns: expected at least nine bundled editorial patterns');
+for (const lockedPattern of ['home-hero.php', 'editorial-callout.php', 'editorial-manifesto.php', 'newsletter.php']) {
+	assert(read(`patterns/${lockedPattern}`).includes('"templateLock":"contentOnly"'), `patterns/${lockedPattern}: content-only editorial lock is missing`);
+}
 
-const screenshot = fs.existsSync(path.join(root, 'screenshot.png'))
-	? fs.statSync(path.join(root, 'screenshot.png'))
-	: null;
-assert(screenshot && screenshot.size > 10_000, 'screenshot.png: expected a non-empty 1200x900 preview image');
+const packageJson = parseJson('package.json');
+assert(packageJson?.version === '0.2.0', 'package.json: version must match the theme release');
+assert(read('readme.txt').includes('Stable tag: 0.2.0'), 'readme.txt: stable tag must match the theme release');
+
+const screenshotPath = path.join(root, 'screenshot.png');
+const screenshot = fs.existsSync(screenshotPath) ? fs.readFileSync(screenshotPath) : null;
+assert(screenshot && screenshot.length > 20_000, 'screenshot.png: expected a substantial 1200x900 preview image');
+if (screenshot?.subarray(1, 4).toString() === 'PNG') {
+	assert(screenshot.readUInt32BE(16) === 1200, 'screenshot.png: width must be 1200 pixels');
+	assert(screenshot.readUInt32BE(20) === 900, 'screenshot.png: height must be 900 pixels');
+}
 
 notes.push(`${templateFiles.length} templates`);
 notes.push(`${partFiles.length} template parts`);
 notes.push(`${patternFiles.length} patterns`);
-notes.push(`${listFiles('styles', '.json').length} style variation`);
+notes.push(`${globalVariationCount} global styles`);
+notes.push(`${scopedVariationCount} section/block styles`);
+notes.push('WordPress 7.1 responsive and interaction states');
 
 if (errors.length > 0) {
 	console.error('Fieldnote validation failed:');

@@ -2,72 +2,94 @@
 
 [![Theme checks](https://github.com/DagemawiDeveloper/fieldnote-block-theme/actions/workflows/theme-checks.yml/badge.svg)](https://github.com/DagemawiDeveloper/fieldnote-block-theme/actions/workflows/theme-checks.yml)
 
-Fieldnote is a small, accessibility-minded WordPress block theme for editorial sites. It is a personal engineering project built to practice and demonstrate current block-theme architecture: `theme.json`, Site Editor templates, template parts, patterns, style variations, and a deliberately constrained editorial workflow.
+Fieldnote is a performance-minded WordPress block theme shaped like a modern field journal. It is a personal engineering project for exploring contemporary editorial systems with native WordPress: no front-end JavaScript, no remote font requests, no framework, and no required plugin.
 
 It is not a production client theme and has not been submitted to the WordPress.org theme directory.
 
 ![Fieldnote editorial homepage preview](screenshot.png)
 
-## What it demonstrates
+## The editorial system
 
-- A complete block-theme template hierarchy for home, index, single, page, archive, search, 404, and a custom wide-page template.
-- Registered header and footer template parts that remain editable in Appearance > Editor.
-- Four bundled patterns, including content-only locked layouts that let editors change copy without dismantling structure.
-- A curated `theme.json` design system with fluid type, spacing presets, a restrained color palette, and an alternate Ink style variation.
-- Semantic `header`, `main`, `section`, and `footer` landmarks, the core Navigation block, visible keyboard focus, and reduced-motion handling.
-- Performance choices that avoid remote fonts, JavaScript, large frameworks, and global block CSS when a block-specific stylesheet is enough.
-- Dependency-free structural validation, PHP syntax checks in CI, and a reproducible installable ZIP.
+| Layer | Included |
+| --- | --- |
+| Templates | Front page, home, index, single, page, wide page, archive, author, search, and 404 |
+| Template parts | Announcement bar, header, and footer |
+| Patterns | Hero, lead-story mosaic, archive grid, topic index, manifesto, reader invitation, author profile, editor’s note, and page intro |
+| Global styles | Paper-led default, Ink, and Moss |
+| Section styles | Obsidian, Parchment, Signal, and Editorial Byline |
+
+The front page is built as a coherent publication rather than a collection of isolated blocks: an issue-led hero, an asymmetric story mosaic, live category navigation, a high-contrast editorial statement, a deeper archive, and a reader invitation.
+
+## WordPress 7.1, used deliberately
+
+- **theme.json** schema version 3 with custom Mobile and Tablet viewports.
+- Native **@mobile** and **@tablet** block style states for spacing and typography.
+- Native Button and Navigation Link states for hover, focus-visible, active, and current-page styling.
+- The new **styles.background.gradient** support for layered editorial surfaces.
+- JSON-registered section and block style variations that remain available in the Site Editor.
+- Content-only locking where editors should own the words without accidentally dismantling the composition.
+
+## Engineering qualities
+
+- Ten templates, each with one semantic **main** landmark and editable template parts.
+- Visible keyboard focus, reduced-motion behavior, increased-contrast treatment, readable default contrast, and print styles.
+- Responsive query compositions that adapt from editorial mosaics to a linear reading order.
+- System serif, sans, and monospace stacks with fluid local type and spacing tokens.
+- Block-aware Button CSS loaded with **wp_enqueue_block_style()**.
+- Dependency-free structural validation, recursive style validation, PHP linting, and a reproducible installable ZIP.
+- No front-end scripts, remote fonts, trackers, CSS framework, or remotely hosted theme assets.
 
 ## Local setup
 
-The quickest option uses the official `@wordpress/env` package with its WordPress Playground runtime, so Docker is not required:
+The quickest option uses the official **@wordpress/env** package with its WordPress Playground runtime:
 
-```bash
+~~~bash
 npm install
 npm run env:start
-```
+~~~
 
-Open `http://localhost:8888`, sign in with the credentials printed by `wp-env`, and activate Fieldnote under **Appearance → Themes** if it is not already active. To stop the environment:
+Open http://localhost:8888, sign in with the credentials printed by wp-env, and activate **Fieldnote** under **Appearance → Themes** if needed. Stop the environment with:
 
-```bash
+~~~bash
 npm run env:stop
-```
+~~~
 
-You can also copy or symlink this repository into `wp-content/themes/fieldnote` in an existing local WordPress installation and activate **Fieldnote** from Appearance > Themes.
+You can also copy or symlink this repository into **wp-content/themes/fieldnote** in an existing WordPress 7.1 installation.
 
 ## Explore it in the Site Editor
 
-1. Open Appearance > Editor and modify the Header or Footer template part.
-2. Switch Global Styles from the default Paper palette to the Ink variation.
-3. Open Templates and inspect the home, single, archive, search, and custom wide-page layouts.
-4. Insert one of the Fieldnote patterns into a page.
-5. Edit the text inside the Editorial hero or Editorial callout and observe how content-only locking protects its structure.
+1. Open **Appearance → Editor** and inspect the Front Page composition.
+2. Edit the Announcement, Header, or Footer template part.
+3. Switch Global Styles between the default, Ink, and Moss designs.
+4. Apply Fieldnote Obsidian, Parchment, Signal, or Editorial Byline to a supported container.
+5. Preview responsive block styles at the configured Mobile and Tablet viewports.
+6. Insert any Fieldnote pattern and confirm content-only patterns protect their structure.
 
 ## Checks and packaging
 
-Run the dependency-free validation script:
+Run the dependency-free validator:
 
-```bash
+~~~bash
 npm test
-```
+~~~
 
-Build an installable theme archive:
+Build the installable archive:
 
-```bash
+~~~bash
 npm run package
-```
+~~~
 
-The ZIP is written to `dist/fieldnote.zip`. GitHub Actions repeats structural validation and packaging, then lints every PHP file across PHP 7.4, 8.2, 8.3, and 8.4.
+The ZIP is written to **dist/fieldnote.zip**. GitHub Actions repeats structure, JSON, markup, contrast, screenshot, and packaging checks, then lints every PHP file across PHP 7.4, 8.2, 8.3, and 8.4.
 
 ## Engineering notes
 
-The reasoning behind the design system, editorial controls, accessibility choices, and asset strategy is recorded in [docs/DECISIONS.md](docs/DECISIONS.md). See the [WordPress 7.1 verification results](docs/TEST-RESULTS.md) and the broader [manual test plan](docs/TESTING.md).
+The reasoning behind the design, responsive system, editorial controls, accessibility approach, and performance budget is recorded in [docs/DECISIONS.md](docs/DECISIONS.md). See [docs/TEST-RESULTS.md](docs/TEST-RESULTS.md) for verified results and [docs/TESTING.md](docs/TESTING.md) for the broader manual plan.
 
 ## Current limits
 
-- The theme intentionally covers a focused editorial use case rather than WooCommerce or complex application UI.
-- Automated checks cannot replace manual Site Editor, keyboard, browser, screen-reader, and real-content testing.
-- RTL layout and older-browser behavior still need dedicated manual verification.
+- Fieldnote covers a focused editorial use case rather than commerce or application UI.
+- Automated checks cannot replace manual Site Editor, keyboard, browser, assistive-technology, RTL, and representative-content testing.
+- The bundled example copy and links are starting points for an editor, not production publication content.
 
 ## License
 

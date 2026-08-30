@@ -1,24 +1,40 @@
 <!-- wp:template-part {"slug":"header"} /-->
 
-<!-- wp:group {"tagName":"main","style":{"dimensions":{"minHeight":"60vh"},"spacing":{"padding":{"bottom":"var:preset|spacing|60","top":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
-<main class="wp-block-group" style="min-height:60vh;padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60)">
-	<!-- wp:paragraph {"className":"fieldnote-kicker","textColor":"terracotta-dark","style":{"typography":{"fontSize":"0.8rem","fontWeight":"700"}}} -->
-	<p class="fieldnote-kicker has-terracotta-dark-color has-text-color" style="font-size:0.8rem;font-weight:700">Error 404</p>
-	<!-- /wp:paragraph -->
-	<!-- wp:heading {"level":1,"fontSize":"display"} -->
-	<h1 class="wp-block-heading has-display-font-size">This page has moved or never existed.</h1>
-	<!-- /wp:heading -->
-	<!-- wp:paragraph {"fontSize":"lead"} -->
-	<p class="has-lead-font-size">Try searching the archive, or return to the home page.</p>
-	<!-- /wp:paragraph -->
-	<!-- wp:search {"label":"Search","showLabel":true,"buttonText":"Search","buttonPosition":"button-inside","buttonUseIcon":true} /-->
-	<!-- wp:buttons -->
-	<div class="wp-block-buttons">
-		<!-- wp:button -->
-		<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/">Return home</a></div>
-		<!-- /wp:button -->
+<!-- wp:group {"tagName":"main","align":"full","className":"fieldnote-404","backgroundColor":"paper","style":{"dimensions":{"minHeight":"70vh"},"spacing":{"padding":{"bottom":"var:preset|spacing|70","top":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
+<main class="wp-block-group alignfull fieldnote-404 has-paper-background-color has-background" style="min-height:70vh;padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)">
+	<!-- wp:columns {"align":"wide","verticalAlignment":"center"} -->
+	<div class="wp-block-columns alignwide are-vertically-aligned-center">
+		<!-- wp:column {"verticalAlignment":"center","width":"35%"} -->
+		<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:35%">
+			<!-- wp:paragraph {"className":"fieldnote-issue-number","textColor":"clay"} -->
+			<p class="fieldnote-issue-number has-clay-color has-text-color">404</p>
+			<!-- /wp:paragraph -->
+			<!-- wp:paragraph {"className":"fieldnote-kicker","textColor":"graphite"} -->
+			<p class="fieldnote-kicker has-graphite-color has-text-color">A missing field note</p>
+			<!-- /wp:paragraph -->
+		</div>
+		<!-- /wp:column -->
+
+		<!-- wp:column {"verticalAlignment":"center","width":"65%"} -->
+		<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:65%">
+			<!-- wp:heading {"level":1,"fontSize":"display"} -->
+			<h1 class="wp-block-heading has-display-font-size">The trail ends here.</h1>
+			<!-- /wp:heading -->
+			<!-- wp:paragraph {"textColor":"graphite","fontSize":"lead"} -->
+			<p class="has-graphite-color has-text-color has-lead-font-size">The page may have moved, or the address may be incomplete. Search the archive or return to the journal.</p>
+			<!-- /wp:paragraph -->
+			<!-- wp:search {"label":"Search Fieldnote","showLabel":false,"placeholder":"Search the journal","buttonText":"Search","buttonPosition":"button-inside","buttonUseIcon":true,"style":{"spacing":{"margin":{"top":"var:preset|spacing|50"}}}} /-->
+			<!-- wp:buttons {"style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}}} -->
+			<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--40)">
+				<!-- wp:button -->
+				<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/">Return to the journal</a></div>
+				<!-- /wp:button -->
+			</div>
+			<!-- /wp:buttons -->
+		</div>
+		<!-- /wp:column -->
 	</div>
-	<!-- /wp:buttons -->
+	<!-- /wp:columns -->
 </main>
 <!-- /wp:group -->
 

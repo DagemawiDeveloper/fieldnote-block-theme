@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"slug": "fieldnote-editorial-byline",
+	"title": "Fieldnote Editorial Byline",
+	"blockTypes": ["core/group"],
+	"styles": {
+		"border": {
+			"top": {
+				"color": "var:preset|color|line",
+				"style": "solid",
+				"width": "1px"
+			}
+		},
+		"spacing": {
+			"padding": {"top": "var:preset|spacing|40"}
+		},
+		"elements": {
+			"link": {
+				"typography": {"textDecoration": "none"}
+			}
+		},
+		"blocks": {
+			"core/post-author-name": {
+				"typography": {
+					"fontFamily": "var:preset|font-family|field-serif",
+					"fontSize": "var:preset|font-size|heading-3",
+					"fontWeight": "600"
+				}
+			},
+			"core/post-date": {
+				"color": {"text": "var:preset|color|graphite"}
+			}
+		}
+	}
+}

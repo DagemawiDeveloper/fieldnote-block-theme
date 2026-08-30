@@ -1,17 +1,19 @@
 === Fieldnote ===
 Contributors: dagemawideveloper
-Requires at least: 6.6
+Requires at least: 7.1
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.1.0
+Stable tag: 0.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-A restrained, accessibility-minded block theme for editorial teams and independent publications.
+A performance-minded editorial block theme shaped like a modern field journal.
 
 == Description ==
 
-Fieldnote is a focused block-theme engineering project. It provides Site Editor templates, editable template parts, curated patterns, a custom wide-page template, and an alternate global style variation.
+Fieldnote is a portfolio-grade block-theme engineering project for independent publications. It combines a native WordPress 7.1 design system, responsive style states, carefully composed templates, content-locked editorial patterns, global style variations, and reusable section styles.
+
+The theme ships no front-end JavaScript, remote fonts, CSS framework, tracking code, or required plugin.
 
 == Installation ==
 
@@ -21,6 +23,14 @@ Fieldnote is a focused block-theme engineering project. It provides Site Editor 
 
 == Changelog ==
 
+= 0.2.0 =
+* Rebuilt the visual system around a premium field-journal direction.
+* Added WordPress 7.1 responsive style states, custom viewports, and interaction states.
+* Expanded the theme to ten templates, three template parts, and nine patterns.
+* Added a second global style plus four reusable section and block style variations.
+* Added richer single-post, archive, search, author, and front-page experiences.
+* Expanded accessibility, reduced-motion, increased-contrast, and print treatments.
+* Strengthened automated validation and package checks.
+
 = 0.1.0 =
 * Initial public engineering sample.
-

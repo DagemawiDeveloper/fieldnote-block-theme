@@ -1,12 +1,25 @@
-/* Keep small editor-only affordances aligned with the front end. */
+/* Editor-only affordances; the shared compositions live in style.css. */
+
+.editor-styles-wrapper {
+	padding-bottom: 2rem;
+}
 
 .editor-styles-wrapper :where(a, button, input, select, textarea):focus-visible {
 	outline: 3px solid var(--wp--preset--color--focus);
 	outline-offset: 3px;
 }
 
-.editor-styles-wrapper .fieldnote-kicker {
-	letter-spacing: 0.09em;
-	text-transform: uppercase;
+.editor-styles-wrapper .fieldnote-site-header {
+	position: relative;
+	top: auto;
 }
 
+.editor-styles-wrapper .fieldnote-story-card .wp-block-post-title a::after {
+	display: none;
+}
+
+.editor-styles-wrapper .fieldnote-hero::before,
+.editor-styles-wrapper .fieldnote-hero::after,
+.editor-styles-wrapper .fieldnote-newsletter::after {
+	pointer-events: none;
+}

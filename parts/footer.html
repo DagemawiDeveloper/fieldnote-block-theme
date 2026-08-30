@@ -1,17 +1,44 @@
-<!-- wp:group {"align":"full","backgroundColor":"ink","textColor":"white","style":{"spacing":{"margin":{"top":"var:preset|spacing|60"},"padding":{"bottom":"var:preset|spacing|50","top":"var:preset|spacing|50"}}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group alignfull has-white-color has-ink-background-color has-text-color has-background" style="margin-top:var(--wp--preset--spacing--60);padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)">
-	<!-- wp:group {"align":"wide","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between","verticalAlignment":"top"}} -->
-	<div class="wp-block-group alignwide">
-		<!-- wp:group {"layout":{"type":"constrained"}} -->
+<!-- wp:group {"align":"full","className":"fieldnote-footer","backgroundColor":"ink","textColor":"white","style":{"spacing":{"margin":{"top":"var:preset|spacing|70"},"padding":{"bottom":"var:preset|spacing|50","top":"var:preset|spacing|60"}},"@mobile":{"spacing":{"padding":{"bottom":"var:preset|spacing|40","top":"var:preset|spacing|50"}}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull fieldnote-footer has-white-color has-ink-background-color has-text-color has-background" style="margin-top:var(--wp--preset--spacing--70);padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--50)">
+	<!-- wp:group {"align":"wide","className":"fieldnote-footer-grid","layout":{"type":"default"}} -->
+	<div class="wp-block-group alignwide fieldnote-footer-grid">
+		<!-- wp:group {"layout":{"type":"constrained","justifyContent":"left"}} -->
 		<div class="wp-block-group">
-			<!-- wp:site-title {"level":0,"style":{"typography":{"fontFamily":"var:preset|font-family|system-serif","fontSize":"1.35rem","fontWeight":"700"}}} /-->
-			<!-- wp:paragraph {"textColor":"line","fontSize":"small"} -->
-			<p class="has-line-color has-text-color has-small-font-size">Independent publishing, thoughtfully made.</p>
+			<!-- wp:site-title {"level":0,"className":"fieldnote-footer-mark"} /-->
+			<!-- wp:paragraph {"textColor":"mist","style":{"typography":{"fontSize":"1rem"},"spacing":{"margin":{"top":"var:preset|spacing|40"}}}} -->
+			<p class="has-mist-color has-text-color" style="margin-top:var(--wp--preset--spacing--40);font-size:1rem">A calm place for reporting, essays, and practical notes from people paying attention.</p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->
 
-		<!-- wp:navigation {"textColor":"white","overlayMenu":"never","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"right"},"fontSize":"small"} /-->
+		<!-- wp:group {"layout":{"type":"constrained","justifyContent":"left"}} -->
+		<div class="wp-block-group">
+			<!-- wp:paragraph {"className":"fieldnote-kicker","textColor":"sky"} -->
+			<p class="fieldnote-kicker has-sky-color has-text-color">Explore</p>
+			<!-- /wp:paragraph -->
+			<!-- wp:navigation {"textColor":"white","overlayMenu":"never","layout":{"type":"flex","orientation":"vertical","justifyContent":"left"},"fontSize":"small"} /-->
+		</div>
+		<!-- /wp:group -->
+
+		<!-- wp:group {"layout":{"type":"constrained","justifyContent":"left"}} -->
+		<div class="wp-block-group">
+			<!-- wp:paragraph {"className":"fieldnote-kicker","textColor":"sky"} -->
+			<p class="fieldnote-kicker has-sky-color has-text-color">Topics</p>
+			<!-- /wp:paragraph -->
+			<!-- wp:categories {"showHierarchy":false,"showPostCounts":false,"className":"fieldnote-footer-topics","style":{"typography":{"fontSize":"0.875rem","lineHeight":"1.9"}}} /-->
+		</div>
+		<!-- /wp:group -->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:group {"align":"wide","style":{"border":{"top":{"color":"#465153","style":"solid","width":"1px"}},"spacing":{"margin":{"top":"var:preset|spacing|60"},"padding":{"top":"var:preset|spacing|40"}}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
+	<div class="wp-block-group alignwide" style="border-top-color:#465153;border-top-style:solid;border-top-width:1px;margin-top:var(--wp--preset--spacing--60);padding-top:var(--wp--preset--spacing--40)">
+		<!-- wp:paragraph {"className":"fieldnote-microcopy","textColor":"mist","fontSize":"micro"} -->
+		<p class="fieldnote-microcopy has-mist-color has-text-color has-micro-font-size">© Fieldnote. Published with care and native WordPress blocks.</p>
+		<!-- /wp:paragraph -->
+		<!-- wp:paragraph {"className":"fieldnote-microcopy","textColor":"mist","fontSize":"micro"} -->
+		<p class="fieldnote-microcopy has-mist-color has-text-color has-micro-font-size"><a href="/privacy">Privacy</a> · <a href="/accessibility">Accessibility</a></p>
+		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->
 </div>

@@ -1,8 +1,45 @@
 <!-- wp:template-part {"slug":"header"} /-->
 
-<!-- wp:group {"tagName":"main","align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|50"}}},"layout":{"type":"default"}} -->
-<main class="wp-block-group alignfull" style="padding-top:var(--wp--preset--spacing--50)">
-	<!-- wp:pattern {"slug":"fieldnote/featured-stories"} /-->
+<!-- wp:group {"tagName":"main","align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
+<main class="wp-block-group alignwide" style="padding-top:var(--wp--preset--spacing--70)">
+	<!-- wp:group {"align":"wide","className":"fieldnote-section-heading","layout":{"type":"default"}} -->
+	<div class="wp-block-group alignwide fieldnote-section-heading">
+		<!-- wp:heading {"level":1,"fontSize":"display"} -->
+		<h1 class="wp-block-heading has-display-font-size">Latest field notes</h1>
+		<!-- /wp:heading -->
+		<!-- wp:paragraph {"textColor":"graphite","fontSize":"lead"} -->
+		<p class="has-graphite-color has-text-color has-lead-font-size">New reporting and essays, published with care.</p>
+		<!-- /wp:paragraph -->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:query {"queryId":20,"query":{"perPage":9,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true},"enhancedPagination":true,"align":"wide","style":{"spacing":{"margin":{"top":"var:preset|spacing|60"}}}} -->
+	<div class="wp-block-query alignwide" style="margin-top:var(--wp--preset--spacing--60)">
+		<!-- wp:post-template {"className":"fieldnote-card-grid","layout":{"type":"default"}} -->
+			<!-- wp:group {"className":"fieldnote-card fieldnote-story-card","style":{"border":{"bottom":{"color":"var:preset|color|line","style":"solid","width":"1px"}},"spacing":{"padding":{"bottom":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
+			<div class="wp-block-group fieldnote-card fieldnote-story-card" style="border-bottom-color:var(--wp--preset--color--line);border-bottom-style:solid;border-bottom-width:1px;padding-bottom:var(--wp--preset--spacing--40)">
+				<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"4/3"} /-->
+				<!-- wp:post-terms {"term":"category","className":"fieldnote-kicker","textColor":"clay-dark"} /-->
+				<!-- wp:post-title {"isLink":true,"fontSize":"heading-3"} /-->
+				<!-- wp:post-excerpt {"moreText":"Read story","excerptLength":24,"fontSize":"small"} /-->
+				<!-- wp:post-date {"format":"M j, Y"} /-->
+			</div>
+			<!-- /wp:group -->
+		<!-- /wp:post-template -->
+
+		<!-- wp:query-no-results -->
+			<!-- wp:paragraph -->
+			<p>No stories are published yet.</p>
+			<!-- /wp:paragraph -->
+		<!-- /wp:query-no-results -->
+
+		<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"space-between"},"style":{"spacing":{"margin":{"top":"var:preset|spacing|60"}}}} -->
+			<!-- wp:query-pagination-previous {"label":"Newer stories"} /-->
+			<!-- wp:query-pagination-numbers /-->
+			<!-- wp:query-pagination-next {"label":"Older stories"} /-->
+		<!-- /wp:query-pagination -->
+	</div>
+	<!-- /wp:query -->
 </main>
 <!-- /wp:group -->
 

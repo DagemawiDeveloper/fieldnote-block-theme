@@ -1,53 +1,52 @@
 <?php
 /**
- * Title: Featured story grid
+ * Title: Latest story grid
  * Slug: fieldnote/featured-stories
  * Categories: fieldnote, posts
- * Description: A three-column editorial query with pagination and an empty state.
+ * Description: A reusable three-column story archive with an empty state and pagination.
  * Block Types: core/query
  * Viewport Width: 1440
  */
 ?>
-<!-- wp:group {"tagName":"section","align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|60"}}},"layout":{"type":"constrained"}} -->
-<section class="wp-block-group alignwide" style="padding-top:var(--wp--preset--spacing--60)">
-	<!-- wp:group {"align":"wide","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between","verticalAlignment":"bottom"}} -->
-	<div class="wp-block-group alignwide">
-		<!-- wp:heading {"anchor":"latest-stories","fontSize":"large"} -->
-		<h2 class="wp-block-heading has-large-font-size" id="latest-stories"><?php echo esc_html_x( 'Latest stories', 'Section heading', 'fieldnote' ); ?></h2>
+<!-- wp:group {"tagName":"section","align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|70"}}},"layout":{"type":"constrained"}} -->
+<section class="wp-block-group alignwide" style="padding-top:var(--wp--preset--spacing--70)">
+	<!-- wp:group {"align":"wide","className":"fieldnote-section-heading","layout":{"type":"default"}} -->
+	<div class="wp-block-group alignwide fieldnote-section-heading">
+		<!-- wp:heading {"fontSize":"heading-2"} -->
+		<h2 class="wp-block-heading has-heading-2-font-size"><?php echo esc_html_x( 'From the archive', 'Section heading', 'fieldnote' ); ?></h2>
 		<!-- /wp:heading -->
-		<!-- wp:paragraph {"textColor":"slate"} -->
-		<p class="has-slate-color has-text-color"><?php echo esc_html_x( 'Reporting, essays, and practical notes.', 'Section supporting text', 'fieldnote' ); ?></p>
+		<!-- wp:paragraph {"textColor":"graphite"} -->
+		<p class="has-graphite-color has-text-color"><?php echo esc_html_x( 'More dispatches, essays, and observations from the Fieldnote desk.', 'Section supporting text', 'fieldnote' ); ?></p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:query {"queryId":1,"query":{"perPage":6,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false},"enhancedPagination":true,"align":"wide"} -->
-	<div class="wp-block-query alignwide">
-		<!-- wp:post-template {"layout":{"type":"grid","columnCount":3}} -->
-			<!-- wp:group {"className":"fieldnote-card","style":{"border":{"bottom":{"color":"var:preset|color|line","style":"solid","width":"1px"}},"spacing":{"padding":{"bottom":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
-			<div class="wp-block-group fieldnote-card" style="border-bottom-color:var(--wp--preset--color--line);border-bottom-style:solid;border-bottom-width:1px;padding-bottom:var(--wp--preset--spacing--40)">
+	<!-- wp:query {"queryId":12,"query":{"perPage":6,"pages":0,"offset":5,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false},"enhancedPagination":true,"align":"wide","style":{"spacing":{"margin":{"top":"var:preset|spacing|60"}}}} -->
+	<div class="wp-block-query alignwide" style="margin-top:var(--wp--preset--spacing--60)">
+		<!-- wp:post-template {"className":"fieldnote-card-grid","layout":{"type":"default"}} -->
+			<!-- wp:group {"className":"fieldnote-card fieldnote-story-card","style":{"border":{"bottom":{"color":"var:preset|color|line","style":"solid","width":"1px"}},"spacing":{"padding":{"bottom":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
+			<div class="wp-block-group fieldnote-card fieldnote-story-card" style="border-bottom-color:var(--wp--preset--color--line);border-bottom-style:solid;border-bottom-width:1px;padding-bottom:var(--wp--preset--spacing--40)">
 				<!-- wp:post-featured-image {"isLink":true,"aspectRatio":"4/3"} /-->
-				<!-- wp:post-terms {"term":"category","className":"fieldnote-kicker","style":{"typography":{"fontSize":"0.75rem","fontWeight":"700"}}} /-->
-				<!-- wp:post-title {"isLink":true,"fontSize":"large"} /-->
-				<!-- wp:post-excerpt {"moreText":"Read story","excerptLength":24} /-->
-				<!-- wp:post-date /-->
+				<!-- wp:post-terms {"term":"category","className":"fieldnote-kicker","textColor":"clay-dark"} /-->
+				<!-- wp:post-title {"isLink":true,"fontSize":"heading-3"} /-->
+				<!-- wp:post-excerpt {"moreText":"Read story","excerptLength":24,"fontSize":"small"} /-->
+				<!-- wp:post-date {"format":"M j, Y"} /-->
 			</div>
 			<!-- /wp:group -->
 		<!-- /wp:post-template -->
 
 		<!-- wp:query-no-results -->
 			<!-- wp:paragraph -->
-			<p><?php echo esc_html_x( 'No stories are published yet.', 'Empty query message', 'fieldnote' ); ?></p>
+			<p><?php echo esc_html_x( 'No additional stories are published yet.', 'Empty query message', 'fieldnote' ); ?></p>
 			<!-- /wp:paragraph -->
 		<!-- /wp:query-no-results -->
 
-		<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"space-between"}} -->
-			<!-- wp:query-pagination-previous /-->
+		<!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"space-between"},"style":{"spacing":{"margin":{"top":"var:preset|spacing|60"}}}} -->
+			<!-- wp:query-pagination-previous {"label":"Newer stories"} /-->
 			<!-- wp:query-pagination-numbers /-->
-			<!-- wp:query-pagination-next /-->
+			<!-- wp:query-pagination-next {"label":"Older stories"} /-->
 		<!-- /wp:query-pagination -->
 	</div>
 	<!-- /wp:query -->
 </section>
 <!-- /wp:group -->
-

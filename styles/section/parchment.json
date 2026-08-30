@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"slug": "fieldnote-parchment",
+	"title": "Fieldnote Parchment",
+	"blockTypes": ["core/group", "core/columns"],
+	"styles": {
+		"border": {
+			"color": "var:preset|color|line",
+			"radius": "0.45rem",
+			"style": "solid",
+			"width": "1px"
+		},
+		"color": {
+			"background": "var:preset|color|paper",
+			"text": "var:preset|color|ink"
+		},
+		"shadow": "var:preset|shadow|paper-lift",
+		"spacing": {
+			"padding": {
+				"bottom": "var:preset|spacing|50",
+				"left": "var:preset|spacing|50",
+				"right": "var:preset|spacing|50",
+				"top": "var:preset|spacing|50"
+			}
+		},
+		"blocks": {
+			"core/separator": {
+				"color": {"background": "var:preset|color|clay"}
+			}
+		}
+	}
+}

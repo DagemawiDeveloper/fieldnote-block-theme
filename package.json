@@ -1,6 +1,6 @@
 {
 	"name": "fieldnote-block-theme",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"private": true,
 	"description": "Development and validation tooling for the Fieldnote WordPress block theme.",
 	"scripts": {
@@ -17,4 +17,3 @@
 		"node": ">=20"
 	}
 }
-

@@ -1,21 +1,24 @@
-# WordPress 7.1 verification
+# Verification results
 
-Tested on August 30, 2026 in WordPress Playground with WordPress 7.1 and PHP 8.3.32.
+## Fieldnote 0.2.0
 
-## Passed
+Repository checks completed on August 30, 2026:
 
-- The packaged ZIP installed and activated without PHP errors.
-- WordPress registered all eight templates, both template parts, the Page (Wide) custom template, four Fieldnote patterns, and the Ink style variation.
-- The home page rendered with one header landmark, one main landmark, one footer landmark, and the core skip-to-content link.
-- The Site Editor loaded the complete home layout as native blocks without an invalid-block warning.
-- Templates, template parts, patterns, Navigation, and the Ink variation were available through their Site Editor screens.
-- The final package passed the repository's structural validation and ZIP integrity check.
+- All ten templates contain balanced block markup, a Header, a semantic main landmark, and a Footer.
+- All three template parts and nine PHP patterns contain valid block attribute JSON and balanced block comments.
+- Both global styles and all four section/block styles parse as theme.json schema version 3 files.
+- The design system includes WordPress 7.1 Mobile, Tablet, hover, focus-visible, active, and current-navigation states.
+- Release numbers agree across style.css, package.json, and readme.txt.
+- The default ink/canvas and white/clay pairs meet the validator’s contrast thresholds.
+- The installable ZIP is reproducible and its contents are inspected by CI.
+- PHP syntax is checked across PHP 7.4, 8.2, 8.3, and 8.4 in GitHub Actions.
 
-## Issues found during testing
+The 0.2.0 package still needs a fresh interactive Site Editor and front-end pass before it should be described as production-ready. The broader cases are listed in TESTING.md.
 
-- Header and footer landmarks were initially duplicated because semantics were set on both the template-part wrapper and its inner Group block. The inner landmarks were removed, and the validator now checks the intended structure.
-- The Editorial callout initially omitted Gutenberg's serialized `has-border-color` class. The class and a matching validation rule were added.
+## Fieldnote 0.1.0 baseline
 
-## Still manual
+The previous 0.1.0 package was interactively installed and activated in WordPress Playground on August 30, 2026 using WordPress 7.1 and PHP 8.3.32.
 
-This check does not replace the broader plan in [TESTING.md](TESTING.md). Dedicated screen-reader, RTL, Theme Unit Test data, older-browser, and representative-content performance testing remain before the theme should be described as production-ready.
+That pass confirmed theme activation, registration of the earlier eight templates, two template parts, four patterns, the wide-page template, and the Ink variation. It also caught and led to fixes for duplicate Header/Footer landmarks and one missing serialized border class.
+
+That earlier runtime result is useful evidence for the project setup, but it is not presented as an interactive verification of the redesigned 0.2.0 release.
