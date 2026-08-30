@@ -10,8 +10,8 @@
 		"package:plugin": "bash scripts/package-plugin.sh",
 		"package:theme": "bash scripts/package-theme.sh",
 		"test": "npm run test:theme && npm run test:plugin",
-		"test:e2e": "playwright test",
-		"test:e2e:ui": "playwright test --ui",
+		"test:e2e": "WP_BASE_URL=http://localhost:8888 playwright test",
+		"test:e2e:ui": "WP_BASE_URL=http://localhost:8888 playwright test --ui",
 		"test:plugin": "node scripts/validate-plugin.mjs",
 		"test:theme": "node scripts/validate-theme.mjs",
 		"wp-env": "wp-env"

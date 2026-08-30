@@ -135,6 +135,7 @@ const packageJson = parseJson(path.join(root, 'package.json'));
 assert(packageJson?.devDependencies?.['@playwright/test'], 'package.json: Playwright dependency is missing');
 assert(packageJson?.devDependencies?.['@wordpress/e2e-test-utils-playwright'], 'package.json: WordPress Playwright utilities are missing');
 assert(packageJson?.devDependencies?.['@axe-core/playwright'], 'package.json: axe Playwright integration is missing');
+assert(packageJson?.scripts?.['test:e2e']?.includes('WP_BASE_URL=http://localhost:8888'), 'package.json: E2E tests must target the development WordPress port');
 for (const file of [
 	path.join(root, 'playwright.config.js'),
 	path.join(root, 'tests', 'e2e', 'global-setup.js'),
