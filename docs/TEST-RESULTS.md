@@ -10,7 +10,15 @@ Local release checks completed on August 30, 2026:
 - Both installable archives build successfully and pass ZIP integrity checks.
 - Visual review passed for the four local demo illustrations and the 1600×1000 editorial-blocks preview.
 
-The current workspace does not provide a native PHP binary or a stable interactive WordPress browser runtime. PHP matrix linting and the real WordPress editor/accessibility suite are therefore required GitHub Actions jobs rather than being represented as local results. The latest workflow run is the source of truth for those checks.
+The [Fieldnote 1.0 release workflow](https://github.com/DagemawiDeveloper/fieldnote-block-theme/actions/runs/33333614856) also completed successfully on August 30, 2026. It confirmed:
+
+- PHP syntax across PHP 7.4, 8.2, 8.3, and 8.4.
+- Theme and plugin package integrity from a clean checkout.
+- Insertion and serialization of both dynamic blocks in the WordPress 7.1 editor.
+- Selection and PHP rendering of a published Lead Story on the public site.
+- No scoped axe violations in the Issue Details and Lead Story output for the tested WCAG 2.0/2.1 A and AA rules.
+
+The current workspace does not provide a native PHP binary or a stable interactive WordPress browser runtime, so those runtime results come from the required public GitHub Actions jobs rather than being represented as local checks.
 
 ## Fieldnote 0.2.0
 
